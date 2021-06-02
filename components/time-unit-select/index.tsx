@@ -3,8 +3,9 @@
  * @AUTH: hy
  * @DATE: 2021-03-18
  */
+import * as React from "react";
 import {Select, SelectProps} from "antd";
-import React from "react";
+
 
 export const TIME_UNITS: { [name: string]: string } = {
   // esriTimeUnitsUnknown: '',

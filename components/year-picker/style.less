@@ -1,0 +1,54 @@
+@import "../style/theme";
+
+@year-picker: @{antd-ext-prefix}-year-picker;
+
+.@{year-picker} {
+  &-dropdown {
+    position: absolute;
+    z-index: 1060;
+
+    &-hidden {
+      display: none;
+    }
+  }
+
+  &-year-panel, &-decade-panel {
+    background-color: white;
+    border: solid 1px rgba(184, 184, 184, 0.64);
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-header {
+    display: flex;
+
+    &-view {
+      flex: 1;
+      text-align: center;
+    }
+  }
+
+  &-content {
+    tr td {
+      color: rgba(0, 0, 0, .25);
+    }
+
+    .@{year-picker}-cell {
+      width: 80px;
+      text-align: center;
+      &:hover{
+        cursor: pointer;
+
+      }
+
+      &-in-view {
+        color: rgba(0, 0, 0, .85);
+      }
+
+      &-selected{
+        color: white;
+        background-color: @primary-color;
+      }
+    }
+  }
+}

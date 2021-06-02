@@ -6,7 +6,15 @@
 import DropdownBox from "./DropdownBox";
 import Group from "./Group";
 
-const CustomizeDropdown = DropdownBox;
+type CustomizeDropdownType = typeof DropdownBox;
+
+interface CustomizeDropdownInterface extends CustomizeDropdownType{
+  Group: typeof Group;
+}
+
+const CustomizeDropdown = DropdownBox as CustomizeDropdownInterface;
+
+CustomizeDropdown.Group = Group;
 
 export default CustomizeDropdown;
-export const GroupListDrop = Group;
+// export const GroupListDrop = Group;

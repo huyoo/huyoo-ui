@@ -20,5 +20,4 @@ describe("TimeUnitSelect.dom", () => {
 
     expect(dom).toMatchSnapshot()
   });
-
 })
