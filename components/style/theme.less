@@ -1,6 +1,21 @@
-// name
+// namespace
 @antd-ext-prefix: antd-ext;
 
 // color
 @primary-color: #1890ff;
+@white: white;
 
+// Border color
+@border-color-base: hsv(0, 0, 85%); // base border outline a component
+@border-color-split: hsv(0, 0, 94%); // split border inside a component
+@border-color-inverse: @white;
+@border-width-base: 1px; // width of the border for a component
+@border-style-base: solid; // style of a components border
+@border-radius-base: 2px;
+
+// Select
+@select-border-color: @border-color-base;
+
+:focus-visible{
+  outline: none;
+}
