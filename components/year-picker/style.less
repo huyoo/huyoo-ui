@@ -42,17 +42,31 @@
   }
 
   &-year-panel, &-decade-panel {
-    background-color: white;
-    border: solid 1px rgba(184, 184, 184, 0.64);
+    background-color: @white;
+    border-radius: @border-radius-base;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .15);
   }
 
   &-header {
     display: flex;
+    padding: 8px;
+
+    .@{year-picker}-decade-btn {
+      font-size: 16px;
+
+      &:hover {
+        color: @primary-color;
+      }
+    }
 
     &-super-prev-btn, &-super-next-btn {
+      opacity: .4;
 
+      &:hover {
+        opacity: .8;
+      }
     }
 
     & button {
@@ -68,16 +82,21 @@
   }
 
   &-content {
-    tr td {
-      color: rgba(0, 0, 0, .25);
-    }
-
     .@{year-picker}-cell {
       width: 80px;
+      height: 48px;
       text-align: center;
 
-      &:hover {
-        cursor: pointer;
+      &-start, &-end {
+        color: rgba(0, 0, 0, .25);
+      }
+
+      &-selected div {
+        color: white !important;
+        background-color: @primary-color !important;
+      }
+
+      &:hover > div {
         background-color: #e6f7ff;
       }
 
@@ -85,9 +104,12 @@
         color: rgba(0, 0, 0, .85);
       }
 
-      &-selected {
-        color: white;
-        background-color: @primary-color;
+      &-inner {
+        display: inline-block;
+        padding: 0 4px;
+        line-height: 24px;
+        cursor: pointer;
+        border-radius: @border-radius-base;
       }
     }
   }
@@ -123,4 +145,15 @@
       }
     }
   }
+
+  &-disabled {
+    cursor: not-allowed;
+
+    input {
+      cursor: not-allowed;
+      color: rgba(0, 0, 0, .25);
+    }
+  }
 }
+
+

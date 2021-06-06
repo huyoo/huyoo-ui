@@ -22,6 +22,7 @@ export interface YearPickerProp {
   classNames?: string;
   style?: React.CSSProperties;
   size?: 'large' | 'middle' | 'small';
+  disabled?: boolean;
 }
 
 const YearPicker: React.FC<YearPickerProp> = (

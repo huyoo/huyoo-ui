@@ -7,14 +7,16 @@ menu: 组件
 import {Playground, Props} from "docz";
 import YearPicker from "./index";
 import "antd/dist/antd.min.css";
-
 import "../../dist/antd-extend-ui.css"
 
--# YearPicker
+# YearPicker
 ## 属性
 <Props of={YearPicker}/>
 
 ## 代码演示
 <Playground>
   <YearPicker onChange={(value) => {console.log(value)}}/>
+
+  <YearPicker value='2021' disabled/>
+  <YearPicker defaultValue='2021'/>
 </Playground>
