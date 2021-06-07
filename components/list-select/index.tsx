@@ -3,20 +3,21 @@
  * @AUTHOR: hy
  * @DATE:       2021-06-06
  */
-import React from "react";
+import *  as React from "react";
+import {Input} from "antd";
 
-export interface indexProp {
+export interface ListSelectProp {
 
 }
 
-const index: React.FC<indexProp> = (props) => {
+const ListSelect: React.FC<ListSelectProp> = (props) => {
   const {} = props;
 
   return (
-    <>
-      <div>index</div>
-    </>
+    <div>
+      <Input/>
+    </div>
   )
 }
 
-export default index;
+export default ListSelect;

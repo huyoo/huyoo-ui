@@ -4,7 +4,8 @@
  * @DATE: 2021-06-01
  */
 import * as React from "react";
-import moment, {Moment} from "moment";
+import * as moment from "moment";
+import { Moment } from 'moment';
 import Picker from "rc-picker";
 import {PickerBaseProps} from "rc-picker/lib/Picker";
 import momentGenerateConfig from 'rc-picker/lib/generate/moment';

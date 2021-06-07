@@ -1,3 +1,7 @@
 /scripts
 .history
 /node_modules
+/.docz
+/es
+/lib
+/dist
