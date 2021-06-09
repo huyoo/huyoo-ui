@@ -5,6 +5,8 @@
  */
 import *  as React from "react";
 import {Input} from "antd";
+import Container from "./Container";
+
 
 export interface ListSelectProp {
 
@@ -13,10 +15,13 @@ export interface ListSelectProp {
 const ListSelect: React.FC<ListSelectProp> = (props) => {
   const {} = props;
 
+
   return (
-    <div>
-      <Input/>
-    </div>
+    <Container prefixCls='antd-ext-list-select'>
+      <div>
+        <Input/>
+      </div>
+    </Container>
   )
 }
 

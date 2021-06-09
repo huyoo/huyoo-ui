@@ -5,10 +5,10 @@
  * https://hub.fastgit.org/react-component/motion
  */
 import * as React from "react";
-import type { CSSMotionProps, MotionEndEventHandler } from 'rc-motion';
 import CSSMotion from 'rc-motion';
+import { CSSMotionProps, MotionEndEventHandler} from 'rc-motion';
 import classNames from 'classnames';
-import { getMotion } from './legacyUtil';
+import {getMotion} from './legacyUtil';
 
 export interface PopupProp {
   visible?: boolean;
@@ -20,30 +20,33 @@ export interface PopupProp {
   zIndex?: number;
 
   // Motion
-  motion: CSSMotionProps;
+  // motion: CSSMotionProps;
   destroyPopupOnHide?: boolean;
   forceRender?: boolean;
 
   // Legacy Motion
-  animation: any; //AnimationType;
-  transitionName: any; //TransitionNameType;
+  animation: string;
+  // transitionName: any; //TransitionNameType;
 
 }
 
 const Popup: React.FC<PopupProp> = (props) => {
   const {
+    prefixCls,
+    className,
+    children,
     visible,
-
+    zIndex,
+    style
   } = props;
 
-  const motion = { ...getMotion(props) };
+  const motion = {...getMotion(props)};
 
   const mergedStyle: React.CSSProperties = {
-    ...stretchStyle,
+    // ...stretchStyle,
     zIndex,
-    opacity:
-      status === 'motion' || status === 'stable' || !visible ? undefined : 0,
-    pointerEvents: status === 'stable' ? undefined : 'none',
+    opacity: visible ? undefined : 0,
+    // pointerEvents: status === 'stable' ? undefined : 'none',
     ...style,
   };
 
@@ -53,17 +56,18 @@ const Popup: React.FC<PopupProp> = (props) => {
       // ref={elementRef}
       leavedClassName={`${prefixCls}-hidden`}
       {...motion}
-      onAppearPrepare={onShowPrepare}
-      onEnterPrepare={onShowPrepare}
-      removeOnLeave={destroyPopupOnHide}
+      // onAppearPrepare={onShowPrepare}
+      // onEnterPrepare={onShowPrepare}
+      // removeOnLeave={destroyPopupOnHide}
       // forceRender={forceRender}
     >
       {
-        ({ className: motionClassName, style: motionStyle }, motionRef) => {
+        ({className: motionClassName, style: motionStyle}, motionRef) => {
+          // console.log(motionRef, motionStyle)
           const mergedClassName = classNames(
-            prefixCls,
+            // prefixCls,
             className,
-            alignedClassName,
+            // alignedClassName,
             motionClassName,
           );
 
@@ -80,12 +84,11 @@ const Popup: React.FC<PopupProp> = (props) => {
                 ...mergedStyle,
               }}
             >
-              <div>Node</div>
+              {children}
             </div>
           )
         }
       }
-      <div>Popup</div>
     </CSSMotion>
   )
 }
