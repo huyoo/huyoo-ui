@@ -2,31 +2,65 @@
 
 @list-select: ~'@{antd-ext-prefix}-list-select';
 
-.@{list-select}{
+.@{list-select} {
   &-hidden {
     display: none;
   }
 
-  &-dropdown{
-    position: relative;
-    //top;
 
-    &.slide-up-enter.slide-up-enter-active&-placement-bottomLeft,
-    &.slide-up-appear.slide-up-appear-active&-placement-bottomLeft {
-      animation-name: antSlideUpIn;
-    }
+}
 
-    &.slide-up-enter.slide-up-enter-active&-placement-topLeft,
-    &.slide-up-appear.slide-up-appear-active&-placement-topLeft {
-      animation-name: antSlideDownIn;
-    }
 
-    &.slide-up-leave.slide-up-leave-active&-placement-bottomLeft {
-      animation-name: antSlideUpOut;
-    }
+.@{list-select}-dropdown {
+  position: relative;
+  background-color: white;
+  border-radius: @border-radius-base;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .15);
 
-    &.slide-up-leave.slide-up-leave-active&-placement-topLeft {
-      animation-name: antSlideDownOut;
-    }
+  &.slide-up-enter.slide-up-enter-active,
+  &.slide-up-appear.slide-up-appear-active {
+    animation-name: antSlideDownOut;
+    animation-duration: 3s;
   }
+
+  &.slide-up-enter.slide-up-enter-active,
+  &.slide-up-appear.slide-up-appear-active {
+    animation-name: antSlideUpOut;
+    animation-duration: 3s;
+  }
+
+  &.slide-up-leave.slide-up-leave-active {
+    animation-name: antSlideDownIn;
+    animation-duration: 3s;
+  }
+
+  &.slide-up-leave.slide-up-leave-active {
+    animation-name: antSlideUpIn;
+    animation-duration: 3s;
+  }
+
+  //&.slide-up-enter.slide-up-enter-active&-placement-bottomLeft,
+  //&.slide-up-appear.slide-up-appear-active&-placement-bottomLeft {
+  //  animation-name: antSlideUpIn;
+  //  animation-duration: 3s;
+  //}
+  //
+  //&.slide-up-enter.slide-up-enter-active&-placement-topLeft,
+  //&.slide-up-appear.slide-up-appear-active&-placement-topLeft {
+  //  animation-name: antSlideDownIn;
+  //  animation-duration: 3s;
+  //
+  //}
+  //
+  //&.slide-up-leave.slide-up-leave-active&-placement-bottomLeft {
+  //  animation-name: antSlideUpOut;
+  //  animation-duration: 3s;
+  //
+  //}
+  //
+  //&.slide-up-leave.slide-up-leave-active&-placement-topLeft {
+  //  animation-name: antSlideDownOut;
+  //  animation-duration: 3s;
+  //
+  //}
 }

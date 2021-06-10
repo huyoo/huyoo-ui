@@ -6,7 +6,7 @@
  */
 import * as React from "react";
 import CSSMotion from 'rc-motion';
-import { CSSMotionProps, MotionEndEventHandler} from 'rc-motion';
+// import { CSSMotionProps, MotionEndEventHandler} from 'rc-motion';
 import classNames from 'classnames';
 import {getMotion} from './legacyUtil';
 
@@ -56,6 +56,7 @@ const Popup: React.FC<PopupProp> = (props) => {
       // ref={elementRef}
       leavedClassName={`${prefixCls}-hidden`}
       {...motion}
+      // motionName='slide-up'
       // onAppearPrepare={onShowPrepare}
       // onEnterPrepare={onShowPrepare}
       // removeOnLeave={destroyPopupOnHide}

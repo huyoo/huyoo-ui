@@ -5,9 +5,9 @@
  */
 import * as React from "react";
 import {HTMLAttributes, useEffect, useRef, useState} from "react";
-import Popup from "./Popup";
 import Portal from "rc-util/lib/Portal";
 import ResizeObserver from 'rc-resize-observer'
+import Popup from "./Popup";
 
 const defaultProps = {
   focusDelay: 0
@@ -18,6 +18,7 @@ let delayTimer = null;
 export interface ContainerProp {
   className?: string;
   prefixCls: string;
+  popupNode?: React.ReactNode | React.ReactElement | string
 }
 
 const Container: React.FC<ContainerProp> = (props) => {
@@ -25,6 +26,7 @@ const Container: React.FC<ContainerProp> = (props) => {
     children,
     className,
     prefixCls,
+    popupNode,
     ...rest
   } = props;
 
@@ -39,29 +41,12 @@ const Container: React.FC<ContainerProp> = (props) => {
     popupAlign();
   }, []);
 
-  // useEffect(() => {
-  //
-  //   containerRef.current.onresize = (a)=> {
-  //     console.log(a );
-  //     setTimeout(popupAlign, 1);
-  //     // return null as any
-  //   }
-  //
-  //   // window.onresize =   () => {
-  //   //   setTimeout(popupAlign, 30);
-  //   // }
-  //
-  //   return () => {
-  //     containerRef.current.onresize = null
-  //     // window.onresize = null
-  //     // document.body.removeEventListener('resize', delayCompute)
-  //   }
-  // })
-
-
   const popupAlign = () => {
     const targetPoint = containerRef.current.getBoundingClientRect();
-    setPoint({top: targetPoint.top + targetPoint.height, left: targetPoint.left});
+    setPoint({
+      top: targetPoint.top + targetPoint.height + document.documentElement.scrollTop,
+      left: targetPoint.left + document.documentElement.scrollLeft
+    });
     setPopupWidth(targetPoint.width);
   }
 
@@ -121,23 +106,12 @@ const Container: React.FC<ContainerProp> = (props) => {
     delaySetPopupVisible(false, defaultProps.focusDelay)
   }
 
-  // const handleClick = ev => {
-  //   console.log(ev)
-  //
-  //   setPoint({
-  //     pointX: ev.pageX,
-  //     pointY: ev.pageY
-  //   })
-  // }
-
   const newChildProps: HTMLAttributes<HTMLElement> & { key: string } = {
     key: 'container'
   }
 
-  // newChildProps.onClick = handleClick;
   newChildProps.onFocus = handleFocus;
   newChildProps.onBlur = handleBlur;
-  // newChildProps.onReset
 
   const child = React.cloneElement(React.Children.only(children) as React.ReactElement, newChildProps)
 
@@ -148,15 +122,17 @@ const Container: React.FC<ContainerProp> = (props) => {
     <Portal getContainer={getContainer}>
       <Popup
         prefixCls={prefixCls + '-dropdown'}
+        className={prefixCls + '-dropdown'}
         style={{
           ...point,
           position: "relative",
-          width: popupWidth
+          width: popupWidth,
+          textAlign: "left"
         }}
         animation='slide-up'
         visible={visible}
       >
-        <div style={{backgroundColor: '#ccc', height: 100}}>111</div>
+        {popupNode}
       </Popup>
     </Portal>
   )

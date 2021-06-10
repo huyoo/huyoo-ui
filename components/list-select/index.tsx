@@ -3,21 +3,32 @@
  * @AUTHOR: hy
  * @DATE:       2021-06-06
  */
-import *  as React from "react";
-import {Input} from "antd";
+import * as React from "react";
+import {useMemo} from "react";
+import {Input, List} from "antd";
 import Container from "./Container";
 
-
-export interface ListSelectProp {
-
+export interface ListSelectProp<T> {
+  dataSource: Array<T>;
+  renderItem: (record: T, index: number) => React.ReactNode | React.ReactElement | string | number;
+  value?: string | number;
+  defaultValue?: string | number;
+  onChange?: (value: string | number, record: T) => void;
 }
 
-const ListSelect: React.FC<ListSelectProp> = (props) => {
-  const {} = props;
+function ListSelect<T extends object = any>(props: ListSelectProp<T>) {
+  const {
+    dataSource,
+    renderItem
+  } = props;
+
+  const popupNode = useMemo(() => {
+    return dataSource.map(renderItem)
+  }, [dataSource]);
 
 
   return (
-    <Container prefixCls='antd-ext-list-select'>
+    <Container prefixCls='antd-ext-list-select' popupNode={<List>{popupNode}</List>}>
       <div>
         <Input/>
       </div>
@@ -25,4 +36,6 @@ const ListSelect: React.FC<ListSelectProp> = (props) => {
   )
 }
 
+
+export const Item = List.Item;
 export default ListSelect;
