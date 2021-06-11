@@ -21,13 +21,17 @@ export interface ListSelectProp<T> {
   value?: string | number;
   defaultValue?: string | number;
   onChange?: (value: string | number, record: T) => void;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 function ListSelect<T>(props: ListSelectProp<T>) {
   const {
     dataSource,
     renderItem,
-    showItem
+    showItem,
+    className,
+    style,
   } = props;
 
   const popupNode = useMemo(() => {
@@ -63,10 +67,11 @@ function ListSelect<T>(props: ListSelectProp<T>) {
     return dataSource.map(() => null)
   }, [dataSource]);
 
+  console.log(style)
 
   return (
     <Container prefixCls='antd-ext-list-select' popupNode={<List>{popupNode}</List>}>
-      <div>
+      <div className={className} style={style}>
         <Input/>
       </div>
     </Container>
