@@ -3,8 +3,8 @@ import type {CSSMotionProps} from 'rc-motion';
 
 interface GetMotionProps {
   motion: CSSMotionProps;
-  animation: any;// AnimationType;
-  transitionName: any; //TransitionNameType;
+  animation?: string;// AnimationType;
+  transitionName?: string; //TransitionNameType;
   prefixCls: string;
 }
 

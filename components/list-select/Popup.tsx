@@ -6,7 +6,7 @@
  */
 import * as React from "react";
 import CSSMotion from 'rc-motion';
-// import { CSSMotionProps, MotionEndEventHandler} from 'rc-motion';
+import {CSSMotionProps, MotionEndEventHandler} from 'rc-motion';
 import classNames from 'classnames';
 import {getMotion} from './legacyUtil';
 
@@ -20,78 +20,92 @@ export interface PopupProp {
   zIndex?: number;
 
   // Motion
-  // motion: CSSMotionProps;
+  motion: CSSMotionProps;
   destroyPopupOnHide?: boolean;
   forceRender?: boolean;
 
   // Legacy Motion
-  animation: string;
-  // transitionName: any; //TransitionNameType;
+  animation?: string;
+  transitionName: string;
 
+  // Events
+  // onMouseEnter?: React.MouseEventHandler<HTMLDivElement>;
+  // onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
+  // onMouseDown?: React.MouseEventHandler<HTMLDivElement>;
+  // onTouchStart?: React.TouchEventHandler<HTMLDivElement>;
 }
 
-const Popup: React.FC<PopupProp> = (props) => {
-  const {
-    prefixCls,
-    className,
-    children,
-    visible,
-    zIndex,
-    style
-  } = props;
+const Popup = React.forwardRef<any, PopupProp>(
+  (props: PopupProp, ref) => {
+    const {
+      prefixCls,
+      className,
+      children,
+      visible,
+      zIndex,
+      style,
 
-  const motion = {...getMotion(props)};
+      // onMouseEnter,
+      // onMouseLeave,
+      // onMouseDown,
+      // onTouchStart,
+    } = props;
 
-  const mergedStyle: React.CSSProperties = {
-    // ...stretchStyle,
-    zIndex,
-    opacity: visible ? undefined : 0,
-    // pointerEvents: status === 'stable' ? undefined : 'none',
-    ...style,
-  };
+    const motion = {...getMotion(props)};
 
-  return (
-    <CSSMotion
-      visible={visible}
-      // ref={elementRef}
-      leavedClassName={`${prefixCls}-hidden`}
-      {...motion}
-      // motionName='slide-up'
-      // onAppearPrepare={onShowPrepare}
-      // onEnterPrepare={onShowPrepare}
-      // removeOnLeave={destroyPopupOnHide}
-      // forceRender={forceRender}
-    >
-      {
-        ({className: motionClassName, style: motionStyle}, motionRef) => {
-          // console.log(motionRef, motionStyle)
-          const mergedClassName = classNames(
-            // prefixCls,
-            className,
-            // alignedClassName,
-            motionClassName,
-          );
+    const mergedStyle: React.CSSProperties = {
+      // ...stretchStyle,
+      zIndex,
+      // opacity: visible ? undefined : 0,
+      // pointerEvents: status === 'stable' ? undefined : 'none',
+      ...style,
+    };
 
-          return (
-            <div
-              ref={motionRef}
-              className={mergedClassName}
-              // onMouseEnter={onMouseEnter}
-              // onMouseLeave={onMouseLeave}
-              // onMouseDownCapture={onMouseDown}
-              // onTouchStartCapture={onTouchStart}
-              style={{
-                ...motionStyle,
-                ...mergedStyle,
-              }}
-            >
-              {children}
-            </div>
-          )
+    return (
+      <CSSMotion
+        visible={visible}
+        ref={ref}
+        leavedClassName={`${prefixCls}-hidden`}
+        {...motion}
+        // motionName='slide-up'
+        // onAppearPrepare={onShowPrepare}
+        // onEnterPrepare={onShowPrepare}
+        // removeOnLeave={destroyPopupOnHide}
+        forceRender
+      >
+        {
+          ({className: motionClassName, style: motionStyle}, motionRef) => {
+            // console.log(motionRef, motionStyle)
+            const mergedClassName = classNames(
+              // prefixCls,
+              className,
+              // alignedClassName,
+              motionClassName,
+            );
+
+            // console.log(children)
+
+            return (
+              <div
+                ref={motionRef}
+                className={mergedClassName}
+                // onMouseEnter={onMouseEnter}
+                // onMouseLeave={onMouseLeave}
+                // onMouseDownCapture={onMouseDown}
+                // onTouchStartCapture={onTouchStart}
+                style={{
+                  ...motionStyle,
+                  ...mergedStyle,
+                }}
+              >
+                {children}
+              </div>
+            )
+          }
         }
-      }
-    </CSSMotion>
-  )
-}
+      </CSSMotion>
+    )
+  }
+)
 
 export default Popup;

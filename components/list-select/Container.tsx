@@ -6,7 +6,9 @@
 import * as React from "react";
 import {HTMLAttributes, useEffect, useRef, useState} from "react";
 import Portal from "rc-util/lib/Portal";
-import ResizeObserver from 'rc-resize-observer'
+import {composeRef, supportRef} from 'rc-util/lib/ref';
+import ResizeObserver from 'rc-resize-observer';
+import contains from 'rc-util/lib/Dom/contains';
 import Popup from "./Popup";
 
 const defaultProps = {
@@ -35,18 +37,36 @@ const Container: React.FC<ContainerProp> = (props) => {
   const [popupWidth, setPopupWidth] = useState(0);
 
   const containerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
 
 
   useEffect(() => {
     popupAlign();
   }, []);
 
+  useEffect(() => {
+    const dom = document.getElementsByTagName('body')[0];
+
+    dom.addEventListener('click', handleDocumentClick);
+    return clearOutsideHandler;
+  })
+
+
+  const clearOutsideHandler = () => {
+    const dom = document.getElementsByTagName('body')[0];
+
+    dom.removeEventListener('click', handleDocumentClick)
+  };
+
   const popupAlign = () => {
-    const targetPoint = containerRef.current.getBoundingClientRect();
+    const targetPoint = triggerRef.current.getBoundingClientRect();
+    const {scrollLeft, scrollTop} = document.documentElement;
+
     setPoint({
-      top: targetPoint.top + targetPoint.height + document.documentElement.scrollTop,
-      left: targetPoint.left + document.documentElement.scrollLeft
+      top: targetPoint.top + targetPoint.height + scrollTop,
+      left: targetPoint.left + scrollLeft
     });
+
     setPopupWidth(targetPoint.width);
   }
 
@@ -58,7 +78,6 @@ const Container: React.FC<ContainerProp> = (props) => {
   }
 
   const getContainer = () => {
-    // const { getDocument } = this.props;
     const popupContainer = document.createElement('div');
     document.getElementsByTagName('body')[0].append(popupContainer);
 
@@ -68,7 +87,6 @@ const Container: React.FC<ContainerProp> = (props) => {
     popupContainer.style.width = '100%';
     popupContainer.style.zIndex = '1060';
 
-    // this.attachParent(popupContainer);
     return popupContainer;
   };
 
@@ -94,30 +112,41 @@ const Container: React.FC<ContainerProp> = (props) => {
     }
   }
 
-  // const handleOnR
-
-  const handleFocus = (ev) => {
-    console.log(ev)
+  const handleClick = (ev) => {
     delaySetPopupVisible(true, defaultProps.focusDelay)
   }
 
-  const handleBlur = (ev) => {
-    clearTimer();
+  const handleDocumentClick = (ev) => {
+    const {target} = ev;
+    const containerNode = containerRef.current;
+    const triggerNode = triggerRef.current;
+
+    if (visible && (contains(containerNode, target) || contains(triggerNode, target))) {
+      return;
+    }
+
     delaySetPopupVisible(false, defaultProps.focusDelay)
   }
+
+  // const handleBlur = (ev) => {
+  //   clearTimer();
+  //   delaySetPopupVisible(false, defaultProps.focusDelay)
+  // }
 
   const newChildProps: HTMLAttributes<HTMLElement> & { key: string } = {
     key: 'container'
   }
 
-  newChildProps.onFocus = handleFocus;
-  newChildProps.onBlur = handleBlur;
+  newChildProps.onClick = handleClick;
+
+  if (supportRef(children)) {
+    (newChildProps as any).ref = composeRef(triggerRef, (children as any).ref)
+  }
 
   const child = React.cloneElement(React.Children.only(children) as React.ReactElement, newChildProps)
 
   let portal: React.ReactElement;
 
-  // if (visible) {
   portal = (
     <Portal getContainer={getContainer}>
       <Popup
@@ -125,26 +154,24 @@ const Container: React.FC<ContainerProp> = (props) => {
         className={prefixCls + '-dropdown'}
         style={{
           ...point,
-          position: "relative",
           width: popupWidth,
-          textAlign: "left"
         }}
-        animation='slide-up'
+        transitionName='slide-up'
         visible={visible}
+        ref={containerRef}
       >
         {popupNode}
       </Popup>
     </Portal>
   )
-  // }
 
   return (
-    <div className={className} ref={containerRef}>
+    <>
       <ResizeObserver onResize={popupAlign}>
         {child}
       </ResizeObserver>
       {portal}
-    </div>
+    </>
   );
 }
 
