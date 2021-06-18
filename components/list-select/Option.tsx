@@ -11,7 +11,7 @@ const {Item} = List;
 export interface OptionProp<T> {
   name: string;
   code: string;
-  extra?: string | number | React.ReactNode;
+  extra?: React.ReactNode;
   onClick?: (record: any, event: Event) => void;
   record: T;
 }

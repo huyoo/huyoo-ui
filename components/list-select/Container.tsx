@@ -20,7 +20,7 @@ let delayTimer = null;
 export interface ContainerProp {
   className?: string;
   prefixCls: string;
-  popupNode?: React.ReactNode | React.ReactElement | string
+  popupNode?: React.ReactNode
 }
 
 const Container: React.FC<ContainerProp> = (props) => {

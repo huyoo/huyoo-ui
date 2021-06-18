@@ -17,7 +17,7 @@ export interface ListSelectProp<T> {
     code?: string;
     extra?: string | ((record: T, index: number) => React.ReactNode);
   }
-  renderItem?: (record: T, index: number) => React.ReactNode | React.ReactElement | string | number;
+  renderItem?: (record: T, index: number) => React.ReactNode;
   value?: string | number;
   defaultValue?: string | number;
   onChange?: (value: string | number, record: T) => void;
