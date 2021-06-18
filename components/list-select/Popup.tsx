@@ -20,7 +20,7 @@ export interface PopupProp {
   zIndex?: number;
 
   // Motion
-  motion: CSSMotionProps;
+  motion?: CSSMotionProps;
   destroyPopupOnHide?: boolean;
   forceRender?: boolean;
 

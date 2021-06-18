@@ -2,7 +2,7 @@ import type {CSSMotionProps} from 'rc-motion';
 // import type {AnimationType, TransitionNameType} from '../interface';
 
 interface GetMotionProps {
-  motion: CSSMotionProps;
+  motion?: CSSMotionProps;
   animation?: string;// AnimationType;
   transitionName?: string; //TransitionNameType;
   prefixCls: string;
@@ -32,5 +32,5 @@ export function getMotion(
     };
   }
 
-  return null;
+  return {};
 }

@@ -3,10 +3,6 @@
     "baseUrl": "./",
     "outDir": "/dist",
     "outFile": "./dist/antd-extend-ui.js",
-    "paths": {
-      "ui": ["components/index.tsx"],
-      "ui/es/*": ["components/*"]
-    },
     "target": "es5",
     "module": "amd",
     "jsx": "react",
@@ -15,9 +11,11 @@
     "strict": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "resolveJsonModule": true,
-    "removeComments": true // 将编译后的文件注释删掉，设为true的话即删除注释，默认为false
+    "removeComments": true, // 将编译后的文件注释删掉，设为true的话即删除注释，默认为false
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true
   },
   "include": [// 要编译的路径列表
     "components/index.tsx",
@@ -26,6 +24,6 @@
   "exclude": [// 示要排除的，不编译的文件，它也可以指定一个列表，规则和include一样，可以是文件可以是文件夹，可以是相对路径或绝对路径，可以使用通配符
     "node_modules",
     "lib",
-    "components/**/__tests__/**"
-  ]
+    "components/**/__tests__/**",
+  ],
 }

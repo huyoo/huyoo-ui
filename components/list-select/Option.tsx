@@ -27,7 +27,7 @@ function Option<T>(
     name, code, extra, onClick, record
   } = props;
 
-  const handleClick = (event) => {
+  const handleClick = (event: any) => {
     onClick && onClick(record, event)
   }
 

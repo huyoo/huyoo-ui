@@ -44,18 +44,17 @@ function ListSelect<T>(props: ListSelectProp<T>) {
       const {name, code, extra} = showItem || {};
 
       return dataSource.map((record, index) => {
-        const optionProp = {
+        const optionProp:any = {
           key: index,
-          name: record?.[name],
-          code: record?.[code],
-          extra: undefined,
+          name: (record as any)?.[name],
+          code: code ? (record as any)?.[code] : '',
           record,
         }
 
         if (extra instanceof Function) {
-          optionProp.extra = extra(record, index)
-        } else {
-          optionProp.extra = record?.[extra];
+          optionProp.extra = extra(record, index);
+        } else if(extra){
+          optionProp.extra = (record as any)?.[extra];
         }
 
         return (

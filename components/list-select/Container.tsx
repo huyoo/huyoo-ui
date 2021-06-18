@@ -15,7 +15,7 @@ const defaultProps = {
   focusDelay: 0
 }
 
-let delayTimer = null;
+let delayTimer: any = null;
 
 export interface ContainerProp {
   className?: string;
@@ -59,6 +59,11 @@ const Container: React.FC<ContainerProp> = (props) => {
   };
 
   const popupAlign = () => {
+
+    if(!triggerRef.current){
+      return;
+    }
+
     const targetPoint = triggerRef.current.getBoundingClientRect();
     const {scrollLeft, scrollTop} = document.documentElement;
 
@@ -112,11 +117,11 @@ const Container: React.FC<ContainerProp> = (props) => {
     }
   }
 
-  const handleClick = (ev) => {
+  const handleClick = () => {
     delaySetPopupVisible(true, defaultProps.focusDelay)
   }
 
-  const handleDocumentClick = (ev) => {
+  const handleDocumentClick = (ev: any) => {
     const {target} = ev;
     const containerNode = containerRef.current;
     const triggerNode = triggerRef.current;
