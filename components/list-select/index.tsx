@@ -25,7 +25,7 @@ export interface ListSelectProp<T> {
   className?: string;
 }
 
-function ListSelect<T>(props: ListSelectProp<T>) {
+function ListSelect<T = any>(props: ListSelectProp<T>) {
   const {
     dataSource,
     renderItem,
@@ -44,7 +44,7 @@ function ListSelect<T>(props: ListSelectProp<T>) {
       const {name, code, extra} = showItem || {};
 
       return dataSource.map((record, index) => {
-        const optionProp:any = {
+        const optionProp: any = {
           key: index,
           name: (record as any)?.[name],
           code: code ? (record as any)?.[code] : '',
@@ -53,7 +53,7 @@ function ListSelect<T>(props: ListSelectProp<T>) {
 
         if (extra instanceof Function) {
           optionProp.extra = extra(record, index);
-        } else if(extra){
+        } else if (extra) {
           optionProp.extra = (record as any)?.[extra];
         }
 

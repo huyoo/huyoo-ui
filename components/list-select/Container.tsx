@@ -75,12 +75,12 @@ const Container: React.FC<ContainerProp> = (props) => {
     setPopupWidth(targetPoint.width);
   }
 
-  const clearTimer = () => {
-    if (delayTimer) {
-      clearTimeout(delayTimer);
-      delayTimer = null;
-    }
-  }
+  // const clearTimer = () => {
+  //   if (delayTimer) {
+  //     clearTimeout(delayTimer);
+  //     delayTimer = null;
+  //   }
+  // }
 
   const getContainer = () => {
     const popupContainer = document.createElement('div');
@@ -99,26 +99,28 @@ const Container: React.FC<ContainerProp> = (props) => {
     popupVisible: boolean,
     event?: { pageX: number; pageY: number },
   ) => {
-    clearTimer();
+    // clearTimer();
     popupAlign()
     setVisible(popupVisible);
   }
 
-  const delaySetPopupVisible = (popupVisible: boolean, delayS: number, ev?: MouseEvent) => {
-    const delay = delayS * 1000;
-    clearTimer();
-
-    if (delay) {
-      delayTimer = setTimeout(() => {
-
-      }, delay)
-    } else {
-      setPopupVisible(popupVisible)
-    }
-  }
+  // const delaySetPopupVisible = (popupVisible: boolean, delayS: number, ev?: MouseEvent) => {
+  //   const delay = delayS * 1000;
+  //   clearTimer();
+  //
+  //   if (delay) {
+  //     delayTimer = setTimeout(() => {
+  //
+  //     }, delay)
+  //   } else {
+  //     setPopupVisible(popupVisible)
+  //   }
+  // }
 
   const handleClick = () => {
-    delaySetPopupVisible(true, defaultProps.focusDelay)
+    // delaySetPopupVisible(true, defaultProps.focusDelay)
+
+    setPopupVisible(true)
   }
 
   const handleDocumentClick = (ev: any) => {
@@ -130,7 +132,8 @@ const Container: React.FC<ContainerProp> = (props) => {
       return;
     }
 
-    delaySetPopupVisible(false, defaultProps.focusDelay)
+    setPopupVisible(false)
+    // delaySetPopupVisible(false, defaultProps.focusDelay)
   }
 
   // const handleBlur = (ev) => {
@@ -161,9 +164,10 @@ const Container: React.FC<ContainerProp> = (props) => {
           ...point,
           width: popupWidth,
         }}
-        transitionName='slide-up'
+        transitionName='ant-slide-up'
         visible={visible}
         ref={containerRef}
+        zIndex={1060}
       >
         {popupNode}
       </Popup>

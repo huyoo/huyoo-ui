@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`TimeUnitSelect.dom should be a component 1`] = `
-<TimeUnitSelect
-  type="default"
-/>
-`;

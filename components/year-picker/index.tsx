@@ -52,7 +52,7 @@ const YearPicker: React.FC<YearPickerProp> = (
             <Picker<Moment>
               picker='year'
               allowClear
-              transitionName="slide-up"
+              transitionName="ant-slide-up"
               clearIcon={<CloseCircleFilled/>}
               prevIcon={<DoubleLeftOutlined/>}
               nextIcon={<DoubleRightOutlined/>}

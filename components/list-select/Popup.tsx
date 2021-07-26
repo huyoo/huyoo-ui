@@ -67,7 +67,7 @@ const Popup = React.forwardRef<any, PopupProp>(
         ref={ref}
         leavedClassName={`${prefixCls}-hidden`}
         {...motion}
-        // motionName='slide-up'
+        motionName='ant-slide-up'
         // onAppearPrepare={onShowPrepare}
         // onEnterPrepare={onShowPrepare}
         // removeOnLeave={destroyPopupOnHide}
@@ -75,7 +75,6 @@ const Popup = React.forwardRef<any, PopupProp>(
       >
         {
           ({className: motionClassName, style: motionStyle}, motionRef) => {
-            // console.log(motionRef, motionStyle)
             const mergedClassName = classNames(
               // prefixCls,
               className,
