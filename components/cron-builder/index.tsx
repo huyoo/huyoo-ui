@@ -1,15 +1,15 @@
 /**
  * @DECS: Cron 表达式构造器
- * @AUTHOR: hy
- * @DATE:       2021-06-06
+ * @AUTH: hy
+ * @DATE: 2021-06-06
  */
-import React from "react";
+import * as React from "react";
 
-export interface indexProp {
+export interface CronBuilderProp {
 
 }
 
-const index: React.FC<indexProp> = (props) => {
+const CronBuilder: React.FC<CronBuilderProp> = (props) => {
   const {} = props;
 
   return (
@@ -19,4 +19,4 @@ const index: React.FC<indexProp> = (props) => {
   )
 }
 
-export default index;
+export default CronBuilder;
