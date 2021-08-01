@@ -5,7 +5,7 @@
  * http://developer.rcsit.cn:1024/components/combo-list-cn/
  */
 import * as React from "react";
-import {useMemo} from "react";
+import {useEffect, useMemo, useRef, useState} from "react";
 import {Input, List} from "antd";
 import Container from "./Container";
 import Option from "./Option";
@@ -23,6 +23,7 @@ export interface ListSelectProp<T> {
   onChange?: (value: string | number, record: T) => void;
   style?: React.CSSProperties;
   className?: string;
+  rowKey?: string,
 }
 
 function ListSelect<T = any>(props: ListSelectProp<T>) {
@@ -32,10 +33,40 @@ function ListSelect<T = any>(props: ListSelectProp<T>) {
     showItem,
     className,
     style,
+    onChange,
+    value,
+    defaultValue,
+    rowKey = 'id',
   } = props;
 
-  const popupNode = useMemo(() => {
+  const [selected, setSelected] = useState<string | number>(value || defaultValue);
+  const isMount = useRef(false);
+  let containerRef = useRef(null);
 
+  useEffect(() => {
+    if (!isMount.current) {
+      isMount.current = true
+      return;
+    }
+
+    if (value !== undefined) {
+      setSelected(value);
+    }
+  }, [value])
+
+  const handleSelect = (newValue) => {
+    if (value !== undefined) {
+      onChange && onChange(newValue[rowKey], newValue)
+    } else {
+      setSelected(newValue[rowKey])
+    }
+
+    if(containerRef?.current?.hidden){
+      containerRef.current.hidden()
+    }
+  }
+
+  const popupNode = useMemo(() => {
     if (renderItem && renderItem instanceof Function) {
       return dataSource.map(renderItem)
     }
@@ -49,6 +80,7 @@ function ListSelect<T = any>(props: ListSelectProp<T>) {
           name: (record as any)?.[name],
           code: code ? (record as any)?.[code] : '',
           record,
+          onClick: handleSelect
         }
 
         if (extra instanceof Function) {
@@ -66,12 +98,10 @@ function ListSelect<T = any>(props: ListSelectProp<T>) {
     return dataSource.map(() => null)
   }, [dataSource]);
 
-  console.log(style)
-
   return (
-    <Container prefixCls='antd-ext-list-select' popupNode={<List>{popupNode}</List>}>
+    <Container prefixCls='antd-ext-list-select' popupNode={<List>{popupNode}</List>} ref={containerRef}>
       <div className={className} style={style}>
-        <Input/>
+        <Input value={selected}/>
       </div>
     </Container>
   )

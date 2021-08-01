@@ -10,12 +10,12 @@ import ListSelect, {Item} from "./index";
 import "antd/dist/antd.min.css";
 import "../../dist/antd-extend-ui.css"
 
--# listSelect
+# ListSelect-列表选择器
 ## 属性
 <Props of={ListSelect}/>
 
 ## 代码演示
-<Playground>
+<Playground >
   <ListSelect
     style={{width: 150}}
     dataSource={
@@ -31,5 +31,24 @@ import "../../dist/antd-extend-ui.css"
       code: 'id',
       extra: 'level'
     }}
+  />
+
+  <ListSelect
+    style={{width: 150}}
+    dataSource={
+      [
+        {id: '京', value: '北京', level: '华北'},
+        {id: '冀', value: '河北', level: '华北'},
+        {id: '粤', value: '广东', level: '华南'},
+        {id: '川', value: '四川', level: '西南'}
+      ]
+    }
+    showItem={{
+      name: 'value',
+      code: 'id',
+      extra: 'level'
+    }}
+    value="粤"
+    onChange={(value, record) => console.log(value, record)}
   />
 </Playground>

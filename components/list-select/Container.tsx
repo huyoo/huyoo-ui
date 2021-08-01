@@ -4,7 +4,7 @@
  * @DATE: 2021-06-08
  */
 import * as React from "react";
-import {HTMLAttributes, useEffect, useRef, useState} from "react";
+import {HTMLAttributes, ReactNode, useEffect, useImperativeHandle, useRef, useState} from "react";
 import Portal from "rc-util/lib/Portal";
 import {composeRef, supportRef} from 'rc-util/lib/ref';
 import ResizeObserver from 'rc-resize-observer';
@@ -21,9 +21,10 @@ export interface ContainerProp {
   className?: string;
   prefixCls: string;
   popupNode?: React.ReactNode
+  children: ReactNode
 }
 
-const Container: React.FC<ContainerProp> = (props) => {
+const Container: React.FC<ContainerProp> = (props, ref) => {
   const {
     children,
     className,
@@ -52,6 +53,11 @@ const Container: React.FC<ContainerProp> = (props) => {
   })
 
 
+  useImperativeHandle(ref, () => ({
+    hidden: () => setVisible(false)
+  }));
+
+
   const clearOutsideHandler = () => {
     const dom = document.getElementsByTagName('body')[0];
 
@@ -60,7 +66,7 @@ const Container: React.FC<ContainerProp> = (props) => {
 
   const popupAlign = () => {
 
-    if(!triggerRef.current){
+    if (!triggerRef.current) {
       return;
     }
 
@@ -184,4 +190,4 @@ const Container: React.FC<ContainerProp> = (props) => {
   );
 }
 
-export default Container;
+export default React.forwardRef<any, ContainerProp>(Container as any);
