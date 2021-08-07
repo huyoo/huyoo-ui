@@ -39,9 +39,9 @@ function ListSelect<T = any>(props: ListSelectProp<T>) {
     rowKey = 'id',
   } = props;
 
-  const [selected, setSelected] = useState<string | number>(value || defaultValue);
+  const [selected, setSelected] = useState<string | number | undefined>(value || defaultValue);
   const isMount = useRef(false);
-  let containerRef = useRef(null);
+  let containerRef = useRef<any>(null);
 
   useEffect(() => {
     if (!isMount.current) {
@@ -54,14 +54,14 @@ function ListSelect<T = any>(props: ListSelectProp<T>) {
     }
   }, [value])
 
-  const handleSelect = (newValue) => {
+  const handleSelect = (newValue: any) => {
     if (value !== undefined) {
       onChange && onChange(newValue[rowKey], newValue)
     } else {
       setSelected(newValue[rowKey])
     }
 
-    if(containerRef?.current?.hidden){
+    if (containerRef?.current?.hidden) {
       containerRef.current.hidden()
     }
   }

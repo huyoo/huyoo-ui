@@ -25,6 +25,7 @@
   "exclude": [// 示要排除的，不编译的文件，它也可以指定一个列表，规则和include一样，可以是文件可以是文件夹，可以是相对路径或绝对路径，可以使用通配符
     "node_modules",
     "lib",
-    "components/**/__tests__"
+    "components/**/__tests__",
+    "components/**/demo"
   ]
 }

@@ -1,11 +1,12 @@
 {
-  "name": "antd-extend-ui",
-  "version": "0.1.4",
+  "name": "huyoo-ui",
+  "version": "0.1.5",
   "scripts": {
     "tsc:es6": "tsc -p tsconfig.build.json",
     "tsc:es5": "tsc -p tsconfig.es5.json",
     "tsc:dist": "tsc -p tsconfig.dist.json",
-    "docz": "docz dev"
+    "dumi": "dumi dev",
+    "dumi-build": "cross-env APP_ROOT=doc dumi build"
   },
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -77,11 +78,12 @@
     "rc-motion": "^2.4.4"
   },
   "devDependencies": {
+    "copy-webpack-plugin": "^6.4.1",
+    "cross-env": "^7.0.3",
+    "dumi": "^1.1.24",
     "less": "^3.13.1",
     "less-loader": "^8.0.0",
     "mini-css-extract-optimize-plugin": "^1.0.0",
-    "copy-webpack-plugin": "^6.4.1",
-    "docz": "^2.3.1",
     "ts-jest": "^26.5.4",
     "@babel/preset-flow": "^7.13.13",
     "react-test-renderer": "^17.0.1",
@@ -89,7 +91,8 @@
     "gulp-less": "^4.0.1",
     "gulp-concat": "^2.6.1",
     "gulp-rename": "^2.0.0",
-    "gulp-cssmin": "^0.2.0"
+    "gulp-cssmin": "^0.2.0",
+    "huyoo-ui": "^0.1.5"
   },
   "peerDependencies": {
     "antd": ">=4.14.1",

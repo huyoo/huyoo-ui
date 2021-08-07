@@ -1,13 +1,16 @@
 ---
-name: YearPicker
-route: /components/year-picker
-menu: 组件
+title: YearPick 年份选择器
+order: 1
+nav:
+  title: 组件
+  path: /components
+group:
+  title: 数据录入
+  path: /components
+  order: 10
 ---
 
-import {Playground, Props} from "docz";
-import YearPicker from "./index";
-import "antd/dist/antd.min.css";
-import "../../dist/antd-extend-ui.css"
+aa
 
 # YearPicker 年度选择器
 ## 属性
@@ -22,9 +25,4 @@ import "../../dist/antd-extend-ui.css"
 | onChange | 选择数据时的回调 | function(value:string) | - |
 
 ## 代码演示
-<Playground>
-  <YearPicker onChange={(value) => {console.log(value)}}/>
-
-  <YearPicker value='2021' disabled/>
-  <YearPicker defaultValue='2021'/>
-</Playground>
+<code src="./demo/base.tsx" />  
