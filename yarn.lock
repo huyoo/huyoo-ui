@@ -6643,10 +6643,10 @@ human-signals@^1.1.1:
   resolved "https://registry.yarnpkg.com/human-signals/-/human-signals-1.1.1.tgz#c5b1cd14f50aeae09ab6c59fe63ba3395fe4dfa3"
   integrity sha512-SEQu7vl8KjNL2eoGBLF3+wAjpsNfA9XMlXAYj/3EdaNfAlxKthD1xjEQfGOUhllCGGJVNY34bRr6lPINhNjyZw==
 
-huyoo-ui@^0.1.5:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/huyoo-ui/-/huyoo-ui-0.1.5.tgz#af55d50191a02d896b192fb06ac06965e205197e"
-  integrity sha512-xMTFz5dDF9ujZZqmb0x1zq3NBfskJth1LiaRmOYxMoDM4HQlzObp4bQYB2OO9b1VHzkzpO9+gFLk3FmRKmVtwA==
+huyoo-ui@^0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/huyoo-ui/-/huyoo-ui-0.1.8.tgz#ade8cd022b6b71d6463dec43920908d5567fb4f3"
+  integrity sha512-EDIWkGfUSKY37FoVoOiB4UXm/3Q3l5DpSWxNapINr/mO1OJ+DWM7At51MJ4X4xM9kKGkPymIExnZL2t7w9bNdA==
   dependencies:
     "@babel/core" "7.12.3"
     "@pmmmwh/react-refresh-webpack-plugin" "0.4.3"

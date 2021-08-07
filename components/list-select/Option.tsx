@@ -3,7 +3,7 @@
  * @AUTH: hy
  * @DATE: 2021-06-11
  */
-import * as React from "react";
+import React from "react";
 import {List} from 'antd'
 
 const {Item} = List;

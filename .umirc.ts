@@ -16,6 +16,7 @@ export default defineConfig({
     //   href: 'https://unpkg.com/@alifd/theme-design-pro@0.6.2/dist/next-noreset.min.css',
     // },
     { rel: 'stylesheet', href: '/huyoo-ui.min.css' },
+    { rel: 'stylesheet', href: '/antd.min.css' },
   ],
   navs: [
     null,

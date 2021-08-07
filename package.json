@@ -1,10 +1,11 @@
 {
   "name": "huyoo-ui",
-  "version": "0.1.5",
+  "version": "0.1.9",
   "scripts": {
     "tsc:es6": "tsc -p tsconfig.build.json",
     "tsc:es5": "tsc -p tsconfig.es5.json",
     "tsc:dist": "tsc -p tsconfig.dist.json",
+    "build:npm": "npm run tsc:dist && npm run tsc:es6 && npm run tsc:es5",
     "dumi": "dumi dev",
     "dumi-build": "cross-env APP_ROOT=doc dumi build"
   },
@@ -92,7 +93,7 @@
     "gulp-concat": "^2.6.1",
     "gulp-rename": "^2.0.0",
     "gulp-cssmin": "^0.2.0",
-    "huyoo-ui": "^0.1.5"
+    "huyoo-ui": "0.1.9"
   },
   "peerDependencies": {
     "antd": ">=4.14.1",

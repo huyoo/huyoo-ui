@@ -3,7 +3,7 @@
  * @AUTH: hy
  * @DATE: 2021-06-08
  */
-import * as React from "react";
+import React from "react";
 import {HTMLAttributes, ReactNode, useEffect, useImperativeHandle, useRef, useState} from "react";
 import Portal from "rc-util/lib/Portal";
 import {composeRef, supportRef} from 'rc-util/lib/ref';

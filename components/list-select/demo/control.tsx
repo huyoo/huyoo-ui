@@ -1,5 +1,5 @@
 import {ListSelect} from 'huyoo-ui';
-import React from 'react'
+import React, {useState} from 'react'
 
 const list = [
   {id: '京', value: '北京', level: '华北'},
@@ -15,11 +15,20 @@ const itemConfig = {
 }
 
 const App = () => {
+  const [value, setValue] = useState('粤');
+
+  const onChange = (value: string | number, record: any) => {
+    console.log(value, record)
+    setValue(value as string);
+  }
+
   return (
     <ListSelect
       style={{width: 150}}
       dataSource={list}
       showItem={itemConfig}
+      value={value}
+      onChange={onChange}
     />
   )
 }

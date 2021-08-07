@@ -4,8 +4,7 @@
  * @DATE:       2021-06-06
  * http://developer.rcsit.cn:1024/components/combo-list-cn/
  */
-import * as React from "react";
-import {useEffect, useMemo, useRef, useState} from "react";
+import React, {useEffect, useMemo, useRef, useState} from "react";
 import {Input, List} from "antd";
 import Container from "./Container";
 import Option from "./Option";

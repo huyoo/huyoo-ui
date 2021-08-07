@@ -1,10 +1,10 @@
-import * as React from 'react';
-import * as Huyoo from 'huyoo-ui';
+import React from 'react';
+import {YearPicker} from 'huyoo-ui';
 
 export default () => {
   return (
     <>
-      <Huyoo.YearPicker/>
+      <YearPicker/>
     </>
   );
 };

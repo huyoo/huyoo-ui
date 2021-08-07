@@ -17,6 +17,8 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "removeComments": true,// 将编译后的文件注释删掉，设为true的话即删除注释，默认为false
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true
   },
   "include": [// 要编译的路径列表
     "components/index.tsx",
@@ -26,6 +28,9 @@
     "node_modules",
     "lib",
     "components/**/__tests__",
-    "components/**/demo"
+    "components/**/demo",
+    "es",
+    "doc",
+    "public"
   ]
 }

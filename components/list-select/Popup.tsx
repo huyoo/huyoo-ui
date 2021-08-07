@@ -4,9 +4,8 @@
  * @DATE: 2021-06-07
  * https://hub.fastgit.org/react-component/motion
  */
-import * as React from "react";
-import CSSMotion from 'rc-motion';
-import {CSSMotionProps, MotionEndEventHandler} from 'rc-motion';
+import React from "react";
+import CSSMotion, {CSSMotionProps} from 'rc-motion';
 import classNames from 'classnames';
 import {getMotion} from './legacyUtil';
 
@@ -80,6 +79,9 @@ const Popup = React.forwardRef<any, PopupProp>(
               className,
               // alignedClassName,
               motionClassName,
+              {
+                [`${prefixCls}-hidden`]: !visible
+              }
             );
 
             // console.log(children)

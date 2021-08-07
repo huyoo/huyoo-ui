@@ -10,9 +10,11 @@ group:
   order: 10
 ---
 
-aa
-
 # YearPicker 年度选择器
+
+## 代码演示
+<code src="./demo/base.tsx" />
+
 ## 属性
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
@@ -23,6 +25,3 @@ aa
 | style | 自定义输入框样式 | CSSProperties | - |
 | value | 年度 | string | - |
 | onChange | 选择数据时的回调 | function(value:string) | - |
-
-## 代码演示
-<code src="./demo/base.tsx" />  

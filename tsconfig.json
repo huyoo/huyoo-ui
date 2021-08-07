@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es6",
+    "jsx": "react",
+    "declaration": true,
+    "declarationDir": "es",
+    "strict": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "removeComments": true,// 将编译后的文件注释删掉，设为true的话即删除注释，默认为false
+  },
+}

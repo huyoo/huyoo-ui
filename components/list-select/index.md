@@ -12,8 +12,11 @@ group:
 
 # ListSelect 列表选择器
 
-## 基础用法
+## 基本使用
 <code src="./demo/base.tsx" />
+
+## 受控用法
+<code src="./demo/control.tsx" />
 
 ## Api
 | 参数 | 说明 | 类型 | 默认值 |
@@ -29,7 +32,7 @@ group:
 | value | 指定当前选中的条目 | string | - |
 | onChange | 选中数据时触发回调 | function(value:string, record: object) | - |
 
-## showItem 配置
+## showItem
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | name |

@@ -1,8 +1,6 @@
 /.idea
 /components
-/config
 /node_modules
-/src
 /public
 /scripts
 .editorconfig
@@ -13,9 +11,13 @@
 .prettierignore
 .prettierrc.js
 .stylelintrc.js
-doczrc.js
 tsconfig.build.json
 tsconfig.dist.json
 tsconfig.es5.json
 tsconfig.json
 yarn.lock
+/.umi
+/doc
+.umirc.ts
+gulpfile.js
+
