@@ -17,6 +17,8 @@ tsconfig.es5.json
 tsconfig.json
 yarn.lock
 /.umi
+/.umi-production
+/doc-dist
 /doc
 .umirc.ts
 gulpfile.js

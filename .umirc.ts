@@ -1,32 +1,21 @@
 import {defineConfig} from 'dumi';
 
 export default defineConfig({
-  title: "Antd Plus",
+  title: "Huyoo UI",
   // chainWebpack(memo) {
   //   memo.plugins.delete('copy');
   // },
   mode: 'site',
   hash: true,
+  outputPath: 'doc-dist',
   resolve: {
     includes: ['components', "doc"],
   },
   links: [
-    // {
-    //   rel: 'stylesheet',
-    //   href: 'https://unpkg.com/@alifd/theme-design-pro@0.6.2/dist/next-noreset.min.css',
-    // },
     { rel: 'stylesheet', href: '/huyoo-ui.min.css' },
     { rel: 'stylesheet', href: '/antd.min.css' },
   ],
   navs: [
     null,
-    {
-      title: '生态',
-      children: [
-        {
-          title: 'useTable',
-          path: 'https://usetable-ahooks.js.org/',
-        },
-      ],
-    },]
+    { title: 'GitHub', path: 'https://github.com/huyoo/huyoo-ui' },]
 });

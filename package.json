@@ -1,18 +1,25 @@
 {
   "name": "huyoo-ui",
   "version": "0.1.9",
+  "description": "练手组件库，基于 React + Antd",
   "scripts": {
     "tsc:es6": "tsc -p tsconfig.build.json",
     "tsc:es5": "tsc -p tsconfig.es5.json",
     "tsc:dist": "tsc -p tsconfig.dist.json",
     "build:npm": "npm run tsc:dist && npm run tsc:es6 && npm run tsc:es5",
     "dumi": "dumi dev",
-    "dumi-build": "cross-env APP_ROOT=doc dumi build"
+    "dumi-build": "dumi build"
   },
   "main": "lib/index.js",
   "module": "es/index.js",
   "unpkg": "dist/huyoo.js",
   "typings": "lib/index.d.ts",
+  "homepage": "https://github.com/huyoo/huyoo-ui",
+  "bugs": "https://github.com/huyoo/huyoo-ui/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/huyoo/huyoo-ui.git"
+  },
   "dependencies": {
     "@babel/core": "7.12.3",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
@@ -92,8 +99,7 @@
     "gulp-less": "^4.0.1",
     "gulp-concat": "^2.6.1",
     "gulp-rename": "^2.0.0",
-    "gulp-cssmin": "^0.2.0",
-    "huyoo-ui": "0.1.9"
+    "gulp-cssmin": "^0.2.0"
   },
   "peerDependencies": {
     "antd": ">=4.14.1",
@@ -105,27 +111,5 @@
       "react-app/jest"
     ]
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "react-app",
-      "@babel/preset-react",
-      "@babel/preset-flow"
-    ],
-    "plugins": [
-      "@babel/plugin-syntax-jsx",
-      "@babel/plugin-transform-modules-commonjs"
-    ]
-  }
+  "license": "MIT"
 }
