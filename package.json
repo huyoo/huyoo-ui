@@ -1,6 +1,6 @@
 {
   "name": "huyoo-ui",
-  "version": "0.1.9",
+  "version": "0.1.11",
   "description": "练手组件库，基于 React + Antd",
   "scripts": {
     "tsc:es6": "tsc -p tsconfig.build.json",

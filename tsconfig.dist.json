@@ -28,6 +28,7 @@
     "components/**/demo",
     "es",
     "doc",
+    "docs",
     "public"
   ],
 }

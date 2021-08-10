@@ -18,8 +18,14 @@ tsconfig.json
 yarn.lock
 /.umi
 /.umi-production
-/doc-dist
+/docs
 /doc
 .umirc.ts
 gulpfile.js
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+yarn.lock
+npm.lock
 
