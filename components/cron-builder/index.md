@@ -8,9 +8,5 @@ group:
   path: /components
   order: 30
 ---
-# CronBuilder cron表达式构造器
+# CronBuilder cron表达式构造器 <Badge>实验性</Badge>
 
-## 属性
-
-## 代码演示
-111

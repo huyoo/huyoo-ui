@@ -12,4 +12,5 @@ task('less', function () {
     .pipe(cssmin())
     .pipe(rename({extname: '.min.css'}))
     .pipe(dest('./dist/'))
+    .pipe(dest('./public/'))// 拷贝文件到public，作为文档站点的引入样式
 })

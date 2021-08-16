@@ -1,8 +1,8 @@
 ---
 title: Huyoo UI
 hero:
-  title: Antd 扩展组件
-  desc: Ant Design 扩展组件
+  title: Huyoo UI
+  desc: 基于 ant design 4+ 的扩展组件
   actions:
     - text: 快速上手
       link: /components/year-picker
