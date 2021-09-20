@@ -3,19 +3,67 @@
  * @AUTH: hy
  * @DATE: 2021-06-06
  */
+import {Input, Popover } from "antd";
 import * as React from "react";
+import {useEffect, useRef, useState} from "react";
+import Builder from "./Builder";
 
 export interface CronBuilderProp {
-
+  className?: string;
+  style?: React.CSSProperties;
+  value?: string;
+  onChange?: (value?: string) => void
 }
 
 const CronBuilder: React.FC<CronBuilderProp> = (props) => {
-  const {} = props;
+  const {
+    style,
+    className,
+    value,
+    onChange
+  } = props;
+
+  let ref = useRef<any>(null);
+  const [checked, setChecked] = useState<string>('');
+
+  useEffect(() => {
+    setChecked(value || '* * * ? * * *')
+  }, [value]);
+
+  const handleSelect = (v:string) => {
+    if (onChange) {
+      onChange(v);
+    }else {
+      setChecked(v);
+    }
+  }
+
+  const onInputChange = () => {
+    if (onChange) {
+      onChange();
+    }else {
+      setChecked('')
+    }
+  }
 
   return (
-    <>
-      <div>index</div>
-    </>
+    <div
+      style={style}
+      className={'antd-ext-cron-builder '+ className}
+      ref={ref}
+    >
+      <Popover
+        trigger="click"
+        getPopupContainer={() => ref.current}
+        content={
+          <div style={{ width: '600px' }}>
+            <Builder value={checked as string} onChange={handleSelect} />
+          </div>
+        }
+      >
+        <Input value={checked} allowClear onChange={onInputChange} />
+      </Popover>
+    </div>
   )
 }
 
