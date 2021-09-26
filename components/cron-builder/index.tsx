@@ -9,9 +9,25 @@ import {useEffect, useRef, useState} from "react";
 import Builder from "./Builder";
 
 export interface CronBuilderProp {
+  /**
+   * @description 选择器类名
+   */
   className?: string;
+
+  /**
+   * @description 样式
+   */
   style?: React.CSSProperties;
+
+  /**
+   * @description 选择器值
+   * @default '* * * ? * * *'
+   */
   value?: string;
+
+  /**
+   * @description 值发生变化时的回调
+   */
   onChange?: (value?: string) => void
 }
 

@@ -10,7 +10,7 @@ const App = () => {
   }
 
   return (
-    <CronBuilder value={value} onChange={handleChange}/>
+    <CronBuilder style={{width: 200}} value={value} onChange={handleChange}/>
   )
 }
 

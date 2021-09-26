@@ -16,10 +16,5 @@ group:
 ## 受控使用
 <code src="./demo/control.tsx" />
 
-## Api
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| className | 选择器 className | string | - |
-| defaultValue | 默认日期 | string | - |
-| value | 指定当前选中的条目 | string | - |
-| onChange | 选中数据时触发回调 | (value:string) => void | - |
+
+<API src="./index.tsx"></API>
