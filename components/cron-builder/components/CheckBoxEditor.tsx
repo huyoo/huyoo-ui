@@ -11,7 +11,7 @@ export interface ICheckBoxEditorProps {
   disabled?: boolean;
 }
 
-const CheckBoxEditor = ({ onChange, min = 0, max, value, disabled }: ICheckBoxEditorProps) => {
+const CheckBoxEditor = ({onChange, min = 0, max, value, disabled}: ICheckBoxEditorProps) => {
   let checked: number[] = [];
   const checkBoxs = (minValue: any, maxValue: any) => {
     const items = [];
@@ -30,9 +30,14 @@ const CheckBoxEditor = ({ onChange, min = 0, max, value, disabled }: ICheckBoxEd
     else if (onChange) onChange(values.sort((a: any, b: any) => a - b).join(','));
   };
 
-  if (value === 'C') {
-    // empty
-  } else if (value) {
+  if (disabled) {
+    checked = []
+  } else if (!value) {
+    checked = [min];
+    if (onChange) {
+      onChange(checked.join(','));
+    }
+  } else {
     checked = value
       .split(',')
       .map((i: any) => parseInt(i, 0))
@@ -44,6 +49,22 @@ const CheckBoxEditor = ({ onChange, min = 0, max, value, disabled }: ICheckBoxEd
       onChange(s);
     }
   }
+
+  // if (value === 'C') {
+  //   checked = [];
+  //   // empty
+  // } else if (value) {
+  //   checked = value
+  //     .split(',')
+  //     .map((i: any) => parseInt(i, 0))
+  //     .filter((v: any) => v >= min && v <= max)
+  //     .sort((a: any, b: any) => a - b);
+  //
+  //   const s = checked.join(',');
+  //   if (s !== value && onChange) {
+  //     onChange(s);
+  //   }
+  // }
 
   return (
     <Checkbox.Group disabled={disabled} onChange={handleChange} value={checked}>

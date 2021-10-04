@@ -20,6 +20,7 @@ yarn.lock
 /.umi-production
 /docs
 /doc
+/tests
 .umirc.ts
 gulpfile.js
 
@@ -28,4 +29,5 @@ yarn-debug.log*
 yarn-error.log*
 yarn.lock
 npm.lock
+jest.config.ts
 

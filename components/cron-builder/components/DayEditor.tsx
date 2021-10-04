@@ -18,7 +18,7 @@ const defaultRadioKeyValue: {
   [index.FROM_EVERY]: '1/1',
   [index.LAST_WORK_DAY]: '1W',
   [index.LAST_MONTH_DAY]: 'L',
-  [index.CHECK_BOX]: 'C',
+  [index.CHECK_BOX]: '1',
 };
 
 class DayEditor extends BaseEditor<{}> {

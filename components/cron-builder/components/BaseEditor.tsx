@@ -1,5 +1,5 @@
-import React, { CSSProperties } from 'react';
-import { LocaleItem } from '../../locale';
+import React, {CSSProperties} from 'react';
+import {LocaleItem} from '../../locale';
 
 export interface ValueInterface {
   [key: string]: string;
@@ -26,24 +26,29 @@ class BaseEditor<P> extends React.Component<IBaseEditorProps & P, IBaseEditorSta
   }
 
   notifyChange = (_: any, value: string) => {
-    const { onChange } = this.props;
+    const {onChange} = this.props;
     if (onChange) {
       onChange(value);
     }
   };
 
-  handleRadioChange = ({ target: { value: radio } }: any) => {
-    const { value } = this.state;
+  handleRadioChange = ({target: {value: radio}}: any) => {
+    const {value} = this.state;
 
-    this.setState({ radio });
+    this.setState({radio});
     this.notifyChange(radio, value[radio]);
   };
 
   handleValueChange = (radio: string, v: string) => {
-    const { value } = this.state;
-    value[radio] = v;
+    let {value} = this.state;
+    if (v === '*') {
+      // value[radio];
+      value['EVERY'] = v;
+    } else {
+      value[radio] = v;
+    }
     // this.setState({ radio, value });
-    this.setState({ value });
+    this.setState({value});
     this.notifyChange(radio, v);
   };
 }

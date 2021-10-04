@@ -13,7 +13,7 @@ const defaultRadioKeyValue: {
   [index.EVERY]: '*',
   [index.BETWEEN]: '0-59',
   [index.FROM_EVERY]: '0/1',
-  [index.CHECK_BOX]: 'C',
+  [index.CHECK_BOX]: '0',
 };
 
 export interface ISecondEditorProps {

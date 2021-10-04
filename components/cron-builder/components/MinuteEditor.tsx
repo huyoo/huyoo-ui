@@ -12,7 +12,7 @@ const defaultRadioKeyValue: any = {};
 defaultRadioKeyValue[index.EVERY] = '*';
 defaultRadioKeyValue[index.BETWEEN] = '0-59';
 defaultRadioKeyValue[index.FROM_EVERY] = '0/1';
-defaultRadioKeyValue[index.CHECK_BOX] = 'C';
+defaultRadioKeyValue[index.CHECK_BOX] = '0';
 
 class MinuteEditor extends BaseEditor<{}> {
   constructor(props: IBaseEditorProps) {

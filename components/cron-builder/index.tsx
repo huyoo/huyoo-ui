@@ -3,7 +3,7 @@
  * @AUTH: hy
  * @DATE: 2021-06-06
  */
-import {Input, Popover } from "antd";
+import {Input, Popover} from "antd";
 import * as React from "react";
 import {useEffect, useRef, useState} from "react";
 import Builder from "./Builder";
@@ -20,7 +20,7 @@ export interface CronBuilderProp {
   style?: React.CSSProperties;
 
   /**
-   * @description 选择器值
+   * @description 选择器值。如果值不符合要求，将会抛错
    * @default '* * * ? * * *'
    */
   value?: string;
@@ -43,13 +43,27 @@ const CronBuilder: React.FC<CronBuilderProp> = (props) => {
   const [checked, setChecked] = useState<string>('');
 
   useEffect(() => {
-    setChecked(value || '* * * ? * * *')
+    let newVal: string;
+
+    if (value) {
+      const corn = value?.split(' ');
+
+      if (corn?.length !== 7) {
+        throw new Error(`[CronBuilder]: value except be seven chars like '* * * ? * * *', not ${value}.`)
+      }
+
+      newVal = value;
+    } else {
+      newVal = '* * * ? * * *';
+    }
+
+    setChecked(newVal)
   }, [value]);
 
-  const handleSelect = (v:string) => {
+  const handleSelect = (v: string) => {
     if (onChange) {
       onChange(v);
-    }else {
+    } else {
       setChecked(v);
     }
   }
@@ -57,7 +71,7 @@ const CronBuilder: React.FC<CronBuilderProp> = (props) => {
   const onInputChange = () => {
     if (onChange) {
       onChange();
-    }else {
+    } else {
       setChecked('')
     }
   }
@@ -65,19 +79,19 @@ const CronBuilder: React.FC<CronBuilderProp> = (props) => {
   return (
     <div
       style={style}
-      className={'antd-ext-cron-builder '+ className}
+      className={'antd-ext-cron-builder ' + className}
       ref={ref}
     >
       <Popover
         trigger="click"
         getPopupContainer={() => ref.current}
         content={
-          <div style={{ width: '600px' }}>
-            <Builder value={checked as string} onChange={handleSelect} />
+          <div style={{width: '600px'}}>
+            <Builder value={checked as string} onChange={handleSelect}/>
           </div>
         }
       >
-        <Input value={checked} allowClear onChange={onInputChange} />
+        <Input value={checked} allowClear onChange={onInputChange}/>
       </Popover>
     </div>
   )

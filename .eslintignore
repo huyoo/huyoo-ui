@@ -1,7 +1,14 @@
-/scripts
-.history
 /node_modules
 /.docz
 /es
 /lib
 /dist
+/.vscode
+/.idea
+/doc
+/docs
+/.umi
+/.umi-production
+/public
+/tests
+

@@ -14,7 +14,7 @@ const defaultRadioKeyValue: {
   [index.EVERY]: '*',
   [index.BETWEEN]: '1-2',
   [index.FROM_EVERY]: '1/1',
-  [index.CHECK_BOX]: 'C',
+  [index.CHECK_BOX]: '1',
 };
 
 class MonthEditor extends BaseEditor<{}> {

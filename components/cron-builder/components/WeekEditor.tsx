@@ -17,7 +17,7 @@ const defaultRadioKeyValue: {
   [index.BETWEEN]: '1-2',
   [index.WEEK_DAY]: '1#1',
   [index.LAST_WEEK_DAY]: '1L',
-  [index.CHECK_BOX]: 'C',
+  [index.CHECK_BOX]: '1',
 };
 
 class WeekEditor extends BaseEditor<{}> {
