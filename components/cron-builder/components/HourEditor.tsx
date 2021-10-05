@@ -3,8 +3,8 @@ import Radio from 'antd/es/radio';
 import Between from './Between';
 import CheckBoxEditor from './CheckBoxEditor';
 import FromEvery from './FromEvery';
-import { getCurrentRegIndex, index } from './reg';
-import BaseEditor, { IBaseEditorProps } from './BaseEditor';
+import {getCurrentRegIndex, index} from './reg';
+import BaseEditor, {IBaseEditorProps} from './BaseEditor';
 
 const RadioGroup = Radio.Group;
 
@@ -20,17 +20,30 @@ const defaultRadioKeyValue: {
 class HourEditor extends BaseEditor<{}> {
   constructor(props: IBaseEditorProps) {
     super(props);
-    this.state = {
-      value: defaultRadioKeyValue,
-    };
+
+    const radio = getCurrentRegIndex(props.value);
+
+    if (radio && props.value) {
+      this.state = {
+        value: {
+          [radio]: props.value,
+        },
+      };
+    } else {
+      this.state = {
+        value: defaultRadioKeyValue
+      };
+    }
   }
 
   render() {
-    const { radioStyle, value: defaultValue, locale, ...config } = this.props;
+    const {radioStyle, value: defaultValue, locale, ...config} = this.props;
+    const {value} = this.state;
+
     const radio = getCurrentRegIndex(defaultValue);
 
     return (
-      <RadioGroup onChange={this.handleRadioChange} value={radio}>
+      <RadioGroup onChange={e => this.handleRadioChange(e, defaultRadioKeyValue)} value={radio}>
         <Radio style={radioStyle} value={index.EVERY}>
           {locale.everyHour}
         </Radio>
@@ -40,7 +53,7 @@ class HourEditor extends BaseEditor<{}> {
             locale={locale}
             disabled={radio !== index.BETWEEN}
             max={23}
-            value={defaultRadioKeyValue[index.BETWEEN]}
+            value={value?.[index.BETWEEN] || defaultRadioKeyValue[index.BETWEEN]}
             {...config}
             onChange={(value: string) => this.handleValueChange(index.BETWEEN, value)}
           />
@@ -53,7 +66,7 @@ class HourEditor extends BaseEditor<{}> {
             back={locale.howOftenHour}
             fromMax={23}
             everyMax={23}
-            value={defaultRadioKeyValue[index.FROM_EVERY]}
+            value={value?.[index.FROM_EVERY] || defaultRadioKeyValue[index.FROM_EVERY]}
             {...config}
             onChange={(value: string) => this.handleValueChange(index.FROM_EVERY, value)}
           />
@@ -63,7 +76,7 @@ class HourEditor extends BaseEditor<{}> {
           <CheckBoxEditor
             disabled={radio !== index.CHECK_BOX}
             max={23}
-            value={defaultRadioKeyValue[index.CHECK_BOX]}
+            value={value?.[index.CHECK_BOX] || defaultRadioKeyValue[index.CHECK_BOX]}
             {...config}
             onChange={(value: string) => this.handleValueChange(index.CHECK_BOX, value)}
           />

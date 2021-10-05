@@ -23,17 +23,29 @@ const defaultRadioKeyValue: {
 class WeekEditor extends BaseEditor<{}> {
   constructor(props: IBaseEditorProps) {
     super(props);
-    this.state = {
-      value: defaultRadioKeyValue,
-    };
+
+    const radio = getCurrentRegIndex(props.value);
+
+    if (radio && props.value) {
+      this.state = {
+        value: {
+          [radio]: props.value,
+        },
+      };
+    } else {
+      this.state = {
+        value: defaultRadioKeyValue
+      };
+    }
   }
 
   render() {
     const { radioStyle, value: defaultValue, locale } = this.props;
+    const {value} = this.state;
     const radio = getCurrentRegIndex(defaultValue);
 
     return (
-      <RadioGroup onChange={this.handleRadioChange} value={radio}>
+      <RadioGroup onChange={e => this.handleRadioChange(e, defaultRadioKeyValue)} value={radio}>
         <Radio style={radioStyle} value={index.EVERY}>
           {locale.everyWeek}
         </Radio>
@@ -47,7 +59,7 @@ class WeekEditor extends BaseEditor<{}> {
             disabled={radio !== index.BETWEEN}
             min={1}
             max={7}
-            value={defaultRadioKeyValue[index.BETWEEN]}
+            value={value?.[index.BETWEEN] || defaultRadioKeyValue[index.BETWEEN]}
             onChange={(value: string) => this.handleValueChange(index.BETWEEN, value)}
           />
         </Radio>
@@ -56,14 +68,14 @@ class WeekEditor extends BaseEditor<{}> {
             locale={locale}
             disabled={radio !== index.WEEK_DAY}
             onChange={(value: string) => this.handleValueChange(index.WEEK_DAY, value)}
-            value={defaultRadioKeyValue[index.WEEK_DAY]}
+            value={value?.[index.WEEK_DAY] || defaultRadioKeyValue[index.WEEK_DAY]}
           />
         </Radio>
         <Radio style={radioStyle} value={index.LAST_WEEK_DAY}>
           {`${locale.lastWeek} `}
           <LastWeekDay
             disabled={radio !== index.LAST_WEEK_DAY}
-            value={defaultRadioKeyValue[index.LAST_WEEK_DAY]}
+            value={value?.[index.LAST_WEEK_DAY] || defaultRadioKeyValue[index.LAST_WEEK_DAY]}
             onChange={(value: string) => this.handleValueChange(index.LAST_WEEK_DAY, value)}
           />
         </Radio>
@@ -73,7 +85,7 @@ class WeekEditor extends BaseEditor<{}> {
             disabled={radio !== index.CHECK_BOX}
             min={1}
             max={7}
-            value={defaultRadioKeyValue[index.CHECK_BOX]}
+            value={value?.[index.CHECK_BOX] || defaultRadioKeyValue[index.CHECK_BOX]}
             onChange={(value: string) => this.handleValueChange(index.CHECK_BOX, value)}
           />
         </Radio>

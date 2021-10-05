@@ -32,10 +32,13 @@ class BaseEditor<P> extends React.Component<IBaseEditorProps & P, IBaseEditorSta
     }
   };
 
-  handleRadioChange = ({target: {value: radio}}: any) => {
-    const {value} = this.state;
+  handleRadioChange = ({target: {value: radio}}: any, defaultValue: any) => {
+    // const {value} = this.state;
 
-    this.setState({radio});
+    const value = {
+      [radio]: defaultValue[radio]
+    }
+    this.setState({value});
     this.notifyChange(radio, value[radio]);
   };
 

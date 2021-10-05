@@ -24,17 +24,30 @@ const defaultRadioKeyValue: {
 class DayEditor extends BaseEditor<{}> {
   constructor(props: IBaseEditorProps) {
     super(props);
-    this.state = {
-      value: defaultRadioKeyValue,
-    };
+
+    const radio = getCurrentRegIndex(props.value);
+
+    if (radio && props.value) {
+      this.state = {
+        value: {
+          [radio]: props.value,
+        },
+      };
+    } else {
+      this.state = {
+        value: defaultRadioKeyValue
+      };
+    }
   }
 
   render() {
     const { radioStyle, value: defaultValue, locale, onChange,...config } = this.props;
+    const {value} = this.state;
+
     const radio = getCurrentRegIndex(defaultValue);
 
     return (
-      <RadioGroup onChange={this.handleRadioChange} value={radio}>
+      <RadioGroup onChange={e => this.handleRadioChange(e, defaultRadioKeyValue)} value={radio}>
         <Radio style={radioStyle} value={index.EVERY}>
           {locale.everyDay}
         </Radio>
@@ -48,7 +61,7 @@ class DayEditor extends BaseEditor<{}> {
             disabled={radio !== index.BETWEEN}
             min={1}
             max={31}
-            value={defaultRadioKeyValue[index.BETWEEN]}
+            value={value?.[index.BETWEEN] || defaultRadioKeyValue[index.BETWEEN]}
             {...config}
             onChange={(value: string) => this.handleValueChange(index.BETWEEN, value)}
           />
@@ -60,7 +73,7 @@ class DayEditor extends BaseEditor<{}> {
             middle={locale.startFromDay}
             back={locale.howOftenDay}
             onChange={(value: string) => this.handleValueChange(index.FROM_EVERY, value)}
-            value={defaultRadioKeyValue[index.FROM_EVERY]}
+            value={value?.[index.FROM_EVERY] ||defaultRadioKeyValue[index.FROM_EVERY]}
             {...config}
           />
         </Radio>
@@ -68,7 +81,7 @@ class DayEditor extends BaseEditor<{}> {
           {`${locale.everyMouth} `}
           <LastWorkDay
             disabled={radio !== index.LAST_WORK_DAY}
-            value={defaultRadioKeyValue[index.LAST_WORK_DAY]}
+            value={value?.[index.LAST_WORK_DAY] || defaultRadioKeyValue[index.LAST_WORK_DAY]}
             {...config}
             onChange={(value: string) => this.handleValueChange(index.LAST_WORK_DAY, value)}
           />
@@ -83,7 +96,7 @@ class DayEditor extends BaseEditor<{}> {
             disabled={radio !== index.CHECK_BOX}
             min={1}
             max={31}
-            value={defaultRadioKeyValue[index.CHECK_BOX]}
+            value={value?.[index.CHECK_BOX] || defaultRadioKeyValue[index.CHECK_BOX]}
             {...config}
             onChange={(value: string) => this.handleValueChange(index.CHECK_BOX, value)}
           />

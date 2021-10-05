@@ -2,8 +2,8 @@ import React from 'react';
 import Radio from 'antd/es/radio';
 import moment from 'moment';
 import Between from './Between';
-import { getCurrentRegIndex, index } from './reg';
-import BaseEditor, { IBaseEditorProps } from './BaseEditor';
+import {getCurrentRegIndex, index} from './reg';
+import BaseEditor, {IBaseEditorProps} from './BaseEditor';
 
 const RadioGroup = Radio.Group;
 const MIN_YEAR = moment().year();
@@ -19,17 +19,30 @@ const defaultRadioKeyValue: {
 class YearEditor extends BaseEditor<{}> {
   constructor(props: IBaseEditorProps) {
     super(props);
-    this.state = {
-      value: defaultRadioKeyValue,
-    };
+
+
+    const radio = getCurrentRegIndex(props.value);
+
+    if (radio && props.value) {
+      this.state = {
+        value: {
+          [radio]: props.value,
+        },
+      };
+    } else {
+      this.state = {
+        value: defaultRadioKeyValue
+      };
+    }
   }
 
   render() {
-    const { radioStyle, value: defaultValue, locale } = this.props;
+    const {radioStyle, value: defaultValue, locale} = this.props;
+    const {value} = this.state;
     const radio = getCurrentRegIndex(defaultValue);
 
     return (
-      <RadioGroup onChange={this.handleRadioChange} value={radio}>
+      <RadioGroup onChange={e => this.handleRadioChange(e, defaultRadioKeyValue)} value={radio}>
         <Radio style={radioStyle} value={index.EVERY}>
           {locale.everyYear}
         </Radio>
@@ -40,7 +53,7 @@ class YearEditor extends BaseEditor<{}> {
             disabled={radio !== index.BETWEEN}
             min={MIN_YEAR}
             max={MAX_YEAR}
-            value={defaultRadioKeyValue[index.BETWEEN]}
+            value={value?.[index.BETWEEN] || defaultRadioKeyValue[index.BETWEEN]}
             onChange={(value: string) => this.handleValueChange(index.BETWEEN, value)}
           />
         </Radio>

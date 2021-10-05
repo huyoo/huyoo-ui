@@ -15,64 +15,91 @@ export interface CronBuilderProp {
   className?: string;
 
   /**
+   * @description 初始值
+   * @default * * * ? * * *
+   */
+  defaultValue?: string;
+
+  /**
+   * @description 是否禁用
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
    * @description 样式
    */
   style?: React.CSSProperties;
 
   /**
-   * @description 选择器值。如果值不符合要求，将会抛错
-   * @default '* * * ? * * *'
+   * @description 选择器值。如果值不符合要求，将会使用默认值
    */
   value?: string;
 
   /**
    * @description 值发生变化时的回调
    */
-  onChange?: (value?: string) => void
+  onChange?: (value: string) => void
 }
 
 const CronBuilder: React.FC<CronBuilderProp> = (props) => {
   const {
-    style,
     className,
+    defaultValue,
+    disabled,
+    style,
     value,
     onChange
   } = props;
 
   let ref = useRef<any>(null);
-  const [checked, setChecked] = useState<string>('');
+  const [checked, setChecked] = useState<string>(defaultValue || '* * * ? * * *');
+
+  // useEffect(() => {
+  //   if(value){
+  //
+  //   }
+  //
+  //   if (defaultValue && !value) {
+  //     let newVal: string;
+  //
+  //     const corn = defaultValue?.split(' ');
+  //
+  //     if (corn?.length !== 7) {
+  //       throw new Error(`[CronBuilder]: defaultValue except be seven chars like '* * * ? * * *', not ${defaultValue}.`)
+  //     }
+  //
+  //     newVal = defaultValue;
+  //     setChecked(newVal)
+  //   }
+  // }, [])
 
   useEffect(() => {
-    let newVal: string;
 
-    if (value) {
-      const corn = value?.split(' ');
-
-      if (corn?.length !== 7) {
-        throw new Error(`[CronBuilder]: value except be seven chars like '* * * ? * * *', not ${value}.`)
-      }
-
-      newVal = value;
-    } else {
-      newVal = '* * * ? * * *';
+    if (!value) {
+      return;
     }
 
+    let newVal: string;
+
+    const corn = value?.split(' ');
+
+    if (corn?.length !== 7) {
+      throw new Error(`[CronBuilder]: value except be seven chars like '* * * ? * * *', not ${value}.`)
+    }
+
+    newVal = value;
     setChecked(newVal)
   }, [value]);
 
   const handleSelect = (v: string) => {
+
     if (onChange) {
       onChange(v);
-    } else {
-      setChecked(v);
     }
-  }
 
-  const onInputChange = () => {
-    if (onChange) {
-      onChange();
-    } else {
-      setChecked('')
+    if (value === undefined) {
+      setChecked(v);
     }
   }
 
@@ -91,7 +118,7 @@ const CronBuilder: React.FC<CronBuilderProp> = (props) => {
           </div>
         }
       >
-        <Input value={checked} allowClear onChange={onInputChange}/>
+        <Input value={checked} disabled={disabled}/>
       </Popover>
     </div>
   )
