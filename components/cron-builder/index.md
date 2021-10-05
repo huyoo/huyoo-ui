@@ -8,7 +8,7 @@ group:
   path: /components
   order: 30
 ---
-# CronBuilder cron表达式构造器 <Badge>实验性</Badge>
+# CronBuilder cron表达式构造器
 
 ## 基本使用
 <code src="./demo/base.tsx" />
