@@ -5,8 +5,8 @@ toc: menu
 
 # 更新日志
 
-## 0.2.1<Badge>待发布</Badge>
-`2021-10-*`   
+## 0.2.1
+`2021-10-07`   
 * CronBuilder
   - 🔥 新增 `defaultValue`,`disabled`。
   - 🐞 修复选择面板来回切换时，出现丢失值的问题。

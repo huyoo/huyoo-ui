@@ -1,4 +1,5 @@
 import {defineConfig} from 'dumi';
+import packages from './package.json';
 
 export default defineConfig({
   title: "Huyoo UI",
@@ -21,6 +22,6 @@ export default defineConfig({
   navs: [
     null,
     { title: 'GitHub', path: 'https://github.com/huyoo/huyoo-ui' },
-    { title: 'v 0.2.1', path: 'https://www.npmjs.com/package/huyoo-ui'}
+    { title: packages.version}
   ]
 });
