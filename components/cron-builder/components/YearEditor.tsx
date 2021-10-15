@@ -1,5 +1,5 @@
 import React from 'react';
-import Radio from 'antd/es/radio';
+import {Radio} from 'antd';
 import moment from 'moment';
 import Between from './Between';
 import {getCurrentRegIndex, index} from './reg';

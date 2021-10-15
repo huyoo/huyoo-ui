@@ -1,7 +1,5 @@
 import React from 'react';
-import Checkbox from 'antd/es/checkbox';
-import Row from 'antd/es/row';
-import Col from 'antd/es/col';
+import {Checkbox, Row, Col} from 'antd';
 
 export interface ICheckBoxEditorProps {
   onChange?: (value: string) => void;

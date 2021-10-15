@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import Input from 'antd/es/input';
+import {Input} from 'antd';
 import {isUndefined} from 'lodash';
 
 const isNotNone = (v: any) => v !== null && v !== undefined;

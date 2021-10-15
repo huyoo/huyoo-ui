@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import Input from 'antd/es/input';
+import {Input} from 'antd';
 import InputNumber from './InputNumber';
 import { LocaleItem } from '../../locale';
 

@@ -1,5 +1,5 @@
 import React, {CSSProperties} from 'react';
-import Radio from 'antd/es/radio';
+import {Radio} from 'antd';
 import Between from './Between';
 import CheckBoxEditor from './CheckBoxEditor';
 import FromEvery from './FromEvery';
