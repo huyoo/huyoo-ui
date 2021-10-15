@@ -44,7 +44,7 @@ export interface CronBuilderProp {
 
 const CronBuilder: React.FC<CronBuilderProp> = (props) => {
   const {
-    className,
+    className = '',
     defaultValue,
     disabled,
     style,
@@ -106,7 +106,7 @@ const CronBuilder: React.FC<CronBuilderProp> = (props) => {
   return (
     <div
       style={style}
-      className={'antd-ext-cron-builder ' + className}
+      className={`antd-ext-cron-builder ${className}`}
       ref={ref}
     >
       <Popover

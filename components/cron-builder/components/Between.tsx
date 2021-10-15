@@ -47,6 +47,7 @@ const Between = ({ value, onChange, min = 0, max, disabled, locale }: IBetweenPr
         display: 'inline-block',
         verticalAlign: 'middle',
         marginLeft: '5px',
+        width: 'auto'
       }}
     >
       <InputNumber

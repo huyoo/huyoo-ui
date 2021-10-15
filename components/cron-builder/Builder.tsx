@@ -18,14 +18,29 @@ const radioStyle = {
 
 
 export interface CronBuilder {
-  style?: React.CSSProperties;
+  /**
+   * @description 选择器类名
+   */
   className?: string;
-  value: string
+
+  /**
+   * @description 样式
+   */
+  style?: React.CSSProperties;
+
+  /**
+   * @description 选择器值，需要满足规范。
+   */
+  value: string;
+
+  /**
+   * @description 值发生变化时的回调
+   */
   onChange: (value: string) => void;
 }
 
 const Builder: React.FC<CronBuilder> = (props) => {
-  const {style, className, value, onChange} = props;
+  const {style, className = '', value, onChange} = props;
 
   const cron = useMemo(() => {
     return value.split(' ')
@@ -84,7 +99,7 @@ const Builder: React.FC<CronBuilder> = (props) => {
     cronChange(value, 6);
   };
 
-  return  (
+  return (
     <Tabs className={className} defaultActiveKey="second" style={style}>
       <TabPane tab={locale.second} key="second">
         <SecondEditor
@@ -112,11 +127,11 @@ const Builder: React.FC<CronBuilder> = (props) => {
       </TabPane>
       <TabPane tab={locale.day} key="day">
         <DayEditor
-            locale={locale}
-            onChange={dayChange}
-            value={cron[3]}
-            radioStyle={radioStyle}
-          />
+          locale={locale}
+          onChange={dayChange}
+          value={cron[3]}
+          radioStyle={radioStyle}
+        />
       </TabPane>
       <TabPane tab={locale.month} key="month">
         <MonthEditor
