@@ -82,6 +82,7 @@ class WeekEditor extends BaseEditor<{}> {
         <Radio style={radioStyle} value={index.CHECK_BOX}>
           {locale.definition}
           <CheckBoxEditor
+            style={{width: 500, marginLeft: 3}}
             disabled={radio !== index.CHECK_BOX}
             min={1}
             max={7}

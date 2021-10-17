@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 import {Checkbox, Row, Col} from 'antd';
 
 export interface ICheckBoxEditorProps {
@@ -7,9 +7,10 @@ export interface ICheckBoxEditorProps {
   max: number;
   value: string;
   disabled?: boolean;
+  style?: CSSProperties;
 }
 
-const CheckBoxEditor = ({onChange, min = 0, max, value, disabled}: ICheckBoxEditorProps) => {
+const CheckBoxEditor = ({onChange, min = 0, max, value, disabled, style}: ICheckBoxEditorProps) => {
   let checked: number[] = [];
   const checkBoxs = (minValue: any, maxValue: any) => {
     const items = [];
@@ -65,7 +66,7 @@ const CheckBoxEditor = ({onChange, min = 0, max, value, disabled}: ICheckBoxEdit
   // }
 
   return (
-    <Checkbox.Group disabled={disabled} onChange={handleChange} value={checked}>
+    <Checkbox.Group disabled={disabled} onChange={handleChange} value={checked} style={style}>
       <Row>{checkBoxs(min, max)}</Row>
     </Checkbox.Group>
   );
