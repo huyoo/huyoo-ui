@@ -5,6 +5,9 @@
 @primary-color: #1890ff;
 @white: white;
 
+@background-color-light: hsv(0, 0, 98%); // background of header and selected item
+@background-color-base: hsv(0, 0, 96%); // Default grey background color
+
 // Border color
 @border-color-base: hsv(0, 0, 85%); // base border outline a component
 @border-color-split: hsv(0, 0, 94%); // split border inside a component
@@ -13,8 +16,49 @@
 @border-style-base: solid; // style of a src border
 @border-radius-base: 2px;
 
+// Disabled states
+@disabled-color: fade(#000, 25%);
+@disabled-bg: @background-color-base;
+@disabled-color-dark: fade(#fff, 35%);
+
+// vertical paddings
+@padding-lg: 24px; // containers
+@padding-md: 16px; // small containers and buttons
+@padding-sm: 12px; // Form controls and items
+@padding-xs: 8px; // small items
+@padding-xss: 4px; // more small
+
+// vertical padding for all form controls
+@control-padding-horizontal: @padding-sm;
+@control-padding-horizontal-sm: @padding-xs;
+
 // Select
 @select-border-color: @border-color-base;
+
+// height rules
+@height-base: 32px;
+@height-lg: 40px;
+@height-sm: 24px;
+
+@input-height-base: @height-base;
+@input-height-lg: @height-lg;
+@input-height-sm: @height-sm;
+@input-padding-horizontal: @control-padding-horizontal - 1px;
+@input-padding-horizontal-base: @input-padding-horizontal;
+@input-padding-horizontal-sm: @control-padding-horizontal-sm - 1px;
+@input-padding-horizontal-lg: @input-padding-horizontal;
+@input-disabled-bg: @disabled-bg;
+
+@line-height-base: 1.5715;
+@font-size-base: 14px;
+@font-size-lg: @font-size-base + 2px;
+
+// Animation
+@animation-duration-slow: 0.3s; // Modal
+@animation-duration-base: 0.2s;
+@animation-duration-fast: 0.1s; // Tooltip
+
+@input-placeholder-color: hsv(0, 0, 75%);
 
 :focus-visible{
   outline: none;

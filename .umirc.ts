@@ -18,6 +18,7 @@ export default defineConfig({
   links: [
     { rel: 'stylesheet', href: '/huyoo-ui/huyoo-ui.min.css' },
     { rel: 'stylesheet', href: '/huyoo-ui/antd.min.css' },
+    { rel: 'stylesheet', href: '/huyoo-ui/site.css' },
   ],
   navs: [
     null,
