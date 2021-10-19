@@ -1,5 +1,7 @@
 /.idea
+/.vscode
 /components
+/coverage
 /node_modules
 /public
 /scripts
@@ -29,5 +31,5 @@ yarn-debug.log*
 yarn-error.log*
 yarn.lock
 npm.lock
-jest.config.ts
+jest.config.js
 
