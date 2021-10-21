@@ -12,8 +12,9 @@ import SizeContext from 'antd/lib/config-provider/SizeContext';
 import LocaleReceiver from "antd/lib/locale-provider/LocaleReceiver";
 import {CloseCircleFilled, DoubleLeftOutlined, DoubleRightOutlined} from '@ant-design/icons';
 import zhCN from 'rc-picker/lib/locale/zh_CN';
+import {basePrefixCls} from "../utils/util";
 
-const prefixCls = 'antd-ext-year-picker';
+const prefixCls = `${basePrefixCls}-year-picker`;
 
 export interface YearPickerProp {
   /**
