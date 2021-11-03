@@ -1,5 +1,5 @@
 ---
-title: Spin 加载中 
+title: Spin 加载中(实验性)
 nav:
   title: 组件 
   path: /components 
