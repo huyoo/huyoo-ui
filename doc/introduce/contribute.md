@@ -72,8 +72,8 @@ toc: menu
 
 ## 开发流程
 
-在你 clone 了 monki-ui 的代码并且使用 `yarn install` 安装完依赖后，你还可以运行下面几个常用的命令：
+在你 clone 了 Huyoo UI 的代码并且使用 `yarn install` 安装完依赖后，你还可以运行下面几个常用的命令：
 
-1. `yarn doc:dev` 在本地运行 Monki UI 的网站。
+1. `yarn doc:dev` 在本地运行 Huyoo UI 的网站。
 2. `yarn build:npm` 编译 TypeScript 与 CSS 代码到指定目录。
-3. `yarn doc:build` 构建 huyoo-ui 的组件库文档版本到 docs 目录。
+3. `yarn doc:build` 构建 Huyoo UI 的组件库文档版本到 docs 目录。
