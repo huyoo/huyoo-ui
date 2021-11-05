@@ -1,0 +1,24 @@
+.main() {
+  position: relative;
+
+  &-container {
+    opacity: 1;
+    transition: opacity .3s;
+  }
+
+  &-spin-blur {
+    clear: both;
+    overflow: hidden;
+    opacity: .5;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  &-mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    animation: show .3s ease-in-out forwards;
+  }
+}

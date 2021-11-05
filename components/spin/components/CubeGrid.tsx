@@ -1,19 +1,25 @@
-import React from "react";
+import React, {useMemo} from "react";
+import SizeContext from "antd/lib/config-provider/SizeContext";
 import cls from "classnames";
 import {basePrefixCls} from "../../utils/util";
-import SizeContext from "antd/lib/config-provider/SizeContext";
 
-const prefixCls = `${basePrefixCls}-spin-roll`;
+const prefixCls = `${basePrefixCls}-spin-cube-gird`;
 
-export interface RollProp {
+export interface CubeGridProp {
   className?: string
   size?: 'small' | 'default' | 'large';
   style?: React.CSSProperties;
   spinning?: boolean;
 }
 
-const Roll: React.FC<RollProp> = (props) => {
+const CubeGrid: React.FC<CubeGridProp> = (props) => {
   const {className, style, spinning, children, size: customSize} = props;
+
+  const cubeList = useMemo(() => {
+    return new Array(9).fill(undefined).map((item, index)=> {
+      return <div className={`${prefixCls}-cube-item`} key={`${prefixCls}-item-${index}`}/>
+    })
+  }, [])
 
   return (
     <SizeContext.Consumer>
@@ -26,7 +32,9 @@ const Roll: React.FC<RollProp> = (props) => {
             <div className={classNames} style={style}>
               {spinning && (
                 <div className={`${prefixCls}-mask`}>
-                  <div className={`${prefixCls}-item`}/>
+                  <div className={`${prefixCls}-item`}>
+                    {cubeList}
+                  </div>
                 </div>
               )}
               <div className={cls(`${prefixCls}-container`, {[`${prefixCls}-spin-blur`]: spinning})}>
@@ -40,10 +48,10 @@ const Roll: React.FC<RollProp> = (props) => {
   )
 }
 
-Roll.defaultProps = {
+CubeGrid.defaultProps = {
   className: '',
   style: {},
   spinning: false
 }
 
-export default Roll;
+export default CubeGrid;
