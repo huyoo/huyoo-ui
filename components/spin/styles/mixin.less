@@ -20,5 +20,31 @@
     height: 100%;
     z-index: 4;
     animation: show .3s ease-in-out forwards;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+}
+
+.small-size(@name) {
+  &.@{name}-small {
+    .@{name}-item {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+.large-size(@name) {
+  &.@{name}-large {
+    .@{name}-item {
+      width: 48px;
+      height: 48px;
+    }
+  }
+}
+
+.default-size(){
+  width: 36px;
+  height: 36px;
 }

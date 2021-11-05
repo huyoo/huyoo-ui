@@ -2,17 +2,11 @@ import React from "react";
 import cls from "classnames";
 import {basePrefixCls} from "../../utils/util";
 import SizeContext from "antd/lib/config-provider/SizeContext";
+import {SpinProps} from "../interface";
 
 const prefixCls = `${basePrefixCls}-spin-roll`;
 
-export interface RollProp {
-  className?: string
-  size?: 'small' | 'default' | 'large';
-  style?: React.CSSProperties;
-  spinning?: boolean;
-}
-
-const Roll: React.FC<RollProp> = (props) => {
+const Roll: React.FC<SpinProps> = (props) => {
   const {className, style, spinning, children, size: customSize} = props;
 
   return (

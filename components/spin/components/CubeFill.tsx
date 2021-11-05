@@ -1,19 +1,13 @@
-import React, {useMemo} from "react";
-import SizeContext from "antd/lib/config-provider/SizeContext";
-import cls from "classnames";
+import React from "react";
 import {basePrefixCls} from "../../utils/util";
+import cls from "classnames";
+import SizeContext from "antd/lib/config-provider/SizeContext";
 import {SpinProps} from "../interface";
 
-const prefixCls = `${basePrefixCls}-spin-cube-gird`;
+const prefixCls = `${basePrefixCls}-spin-cube-fill`;
 
-const CubeGrid: React.FC<SpinProps> = (props) => {
+const CubeFill: React.FC<SpinProps> = (props) => {
   const {className, style, spinning, children, size: customSize} = props;
-
-  const cubeList = useMemo(() => {
-    return new Array(9).fill(undefined).map((item, index)=> {
-      return <div className={`${prefixCls}-cube-item`} key={`${prefixCls}-item-${index}`}/>
-    })
-  }, [])
 
   return (
     <SizeContext.Consumer>
@@ -27,7 +21,7 @@ const CubeGrid: React.FC<SpinProps> = (props) => {
               {spinning && (
                 <div className={`${prefixCls}-mask`}>
                   <div className={`${prefixCls}-item`}>
-                    {cubeList}
+                    <div className={`${prefixCls}-item-inner`}/>
                   </div>
                 </div>
               )}
@@ -42,10 +36,10 @@ const CubeGrid: React.FC<SpinProps> = (props) => {
   )
 }
 
-CubeGrid.defaultProps = {
+CubeFill.defaultProps = {
   className: '',
   style: {},
   spinning: false
 }
 
-export default CubeGrid;
+export default CubeFill;

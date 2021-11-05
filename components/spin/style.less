@@ -1,7 +1,7 @@
 @import "../style/theme";
 @import "../style/keyframes";
-@import "./styles/keyframe";
-@import "./styles/common";
+@import "styles/keyframe";
+@import "styles/mixin";
 
 @loading: ~'@{antd-ext-prefix}-spin';
 
@@ -83,29 +83,11 @@
 .@{cube-loading} {
   .main();
 
-  &-mask {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &.@{cube-loading}-large {
-    .@{cube-loading}-item {
-      width: 48px;
-      height: 48px;
-    }
-  }
-
-  &.@{cube-loading}-small {
-    .@{cube-loading}-item {
-      width: 24px;
-      height: 24px;
-    }
-  }
+  .large-size(@cube-loading);
+  .small-size(@cube-loading);
 
   &-item {
-    width: 36px;
-    height: 36px;
+    .default-size();
 
     .@{cube-loading}-cube-item {
       width: 33.3333%;
@@ -133,6 +115,26 @@
       &:nth-child(9) {
         animation-delay: 0.4s;
       }
+    }
+  }
+}
+
+
+@cube-fill: ~'@{antd-ext-prefix}-spin-cube-fill';
+.@{cube-fill} {
+  .main();
+
+  .large-size(@cube-fill);
+  .small-size(@cube-fill);
+
+  &-item {
+    .default-size();
+    border: 4px solid @primary-color;
+    animation: cube-fill-rotate 4s infinite ease;
+
+    &-inner {
+      background-color: @primary-color;
+      animation: cube-fill-height 4s infinite ease-in;
     }
   }
 }
