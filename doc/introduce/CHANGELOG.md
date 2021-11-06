@@ -6,7 +6,7 @@ toc: menu
 # 更新日志
 
 ## 0.2.2
-`待定`
+`2021-11-06`
 * YearPicker
   - 🔥 新增 `size` `placeholder`,`size`可以通过全局化配置`ConfigProvider`统一设置。
   - 💄 优化`disabled` `hover` `focus`等状态的样式。
