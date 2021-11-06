@@ -1,6 +1,9 @@
 <h1 align="center">Huyoo UI</h1>
 
 <div align="center">
+[![](https://img.shields.io/npm/v/huyoo-ui.svg)](https://www.npmjs.com/package/huyoo-ui) ![](https://img.shields.io/github/license/huyoo/huyoo-ui) [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest) ![](https://img.shields.io/github/stars/huyoo/huyoo-ui?style=social)
+</div>
+<div align="left">
 个人练手组件库，生产项目中谨用。基于 React + TypeScript + Antd + less 开发，组件基于 <a href="https://ant.design/">Ant Design</a> 和 基础组件 <a href="https://github.com/react-component/">react-component</a> 开发，样式延续了 Antd 的风格。欢迎提供意见，加入更多有特色的组件，丰富组件库。你的 star ⭐，是对我最大的鼓励。
 </div>
 <div align="center">
