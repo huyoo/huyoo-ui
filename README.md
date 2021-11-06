@@ -1,10 +1,10 @@
 <h1 align="center">Huyoo UI</h1>
 
 <div align="center">
-个人练手组件库，生产项目中谨用。基于 React + TypeScript + Antd + less 开发，组件基于 [Ant Design](https://ant.design/) 和 基础组件 [react-component](https://github.com/react-component/) 开发，样式延续了 Antd 的风格。欢迎提供意见，加入更多有特色的组件，丰富组件库。你的 star ⭐，是对我最大的鼓励。
+个人练手组件库，生产项目中谨用。基于 React + TypeScript + Antd + less 开发，组件基于 <a href="https://ant.design/">Ant Design</a> 和 基础组件 <a href="https://github.com/react-component/">react-component</a> 开发，样式延续了 Antd 的风格。欢迎提供意见，加入更多有特色的组件，丰富组件库。你的 star ⭐，是对我最大的鼓励。
 </div>
 <div align="center">
-[文档地址](https://huyoo.github.io/huyoo-ui/)
+  <a href="https://huyoo.github.io/huyoo-ui/">文档地址</a>
 </div>
 
 ## 特性
