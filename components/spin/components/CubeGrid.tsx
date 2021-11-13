@@ -1,44 +1,22 @@
 import React, {useMemo} from "react";
-import SizeContext from "antd/lib/config-provider/SizeContext";
-import cls from "classnames";
 import {basePrefixCls} from "../../utils/util";
-import {SpinProps} from "../interface";
+import BaseContainer, {SpinProps} from "./BaseContainer";
 
 const prefixCls = `${basePrefixCls}-spin-cube-gird`;
 
 const CubeGrid: React.FC<SpinProps> = (props) => {
-  const {className, style, spinning, children, size: customSize} = props;
+  const {children: content, ...rest} = props;
 
   const cubeList = useMemo(() => {
-    return new Array(9).fill(undefined).map((item, index)=> {
+    return new Array(9).fill(undefined).map((item, index) => {
       return <div className={`${prefixCls}-cube-item`} key={`${prefixCls}-item-${index}`}/>
     })
   }, [])
 
   return (
-    <SizeContext.Consumer>
-      {
-        size => {
-          const mergeSize = customSize || size;
-          const classNames = cls(prefixCls, {[`${prefixCls}-${mergeSize}`]: mergeSize}, className);
-
-          return (
-            <div className={classNames} style={style}>
-              {spinning && (
-                <div className={`${prefixCls}-mask`}>
-                  <div className={`${prefixCls}-item`}>
-                    {cubeList}
-                  </div>
-                </div>
-              )}
-              <div className={cls(`${prefixCls}-container`, {[`${prefixCls}-spin-blur`]: spinning})}>
-                {children}
-              </div>
-            </div>
-          )
-        }
-      }
-    </SizeContext.Consumer>
+    <BaseContainer {...rest} prefixCls="cube-gird" content={content}>
+      {cubeList}
+    </BaseContainer>
   )
 }
 
