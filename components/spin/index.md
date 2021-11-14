@@ -14,6 +14,15 @@ group:
 ## Roll
 <code src="./demo/roll.tsx" />
 
+## CubeGrid
+<code src="./demo/cubeGrid.tsx" />
+
+## CubeFill
+<code src="./demo/cubeFill.tsx" />
+
+## DotBound
+<code src="./demo/dotBound.tsx" />
+
 ## API
 
 | 参数 | 说明 | 类型 | 默认值 |
