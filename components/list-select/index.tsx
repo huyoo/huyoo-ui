@@ -1,13 +1,8 @@
-/**
- * @DECS: 列表下拉选择
- * @AUTHOR: hy
- * @DATE:       2021-06-06
- * http://developer.rcsit.cn:1024/components/combo-list-cn/
- */
 import React, {useEffect, useMemo, useRef, useState} from "react";
 import {Input, List} from "antd";
 import Container from "./Container";
 import Option from "./Option";
+import {basePrefixCls} from "../utils/util";
 
 export interface ListSelectProp<T> {
   dataSource: Array<T>;
@@ -98,7 +93,7 @@ function ListSelect<T = any>(props: ListSelectProp<T>) {
   }, [dataSource]);
 
   return (
-    <Container prefixCls='antd-ext-list-select' popupNode={<List>{popupNode}</List>} ref={containerRef}>
+    <Container prefixCls={`${basePrefixCls}-list-select`} popupNode={<List>{popupNode}</List>} ref={containerRef}>
       <div className={className} style={style}>
         <Input value={selected}/>
       </div>

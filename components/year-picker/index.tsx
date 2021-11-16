@@ -1,8 +1,3 @@
-/**
- * @DECS: 年份选择
- * @AUTH: hy
- * @DATE: 2021-06-01
- */
 import React, {useMemo} from "react";
 import moment, {Moment} from 'moment';
 import Picker from "rc-picker";
