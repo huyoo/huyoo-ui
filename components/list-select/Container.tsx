@@ -1,10 +1,4 @@
-/**
- * @DECS:
- * @AUTH: hy
- * @DATE: 2021-06-08
- */
-import React from "react";
-import {HTMLAttributes, ReactNode, useEffect, useImperativeHandle, useRef, useState} from "react";
+import React, {HTMLAttributes, ReactNode, useEffect, useRef, useState} from "react";
 import Portal from "rc-util/lib/Portal";
 import {composeRef, supportRef} from 'rc-util/lib/ref';
 import ResizeObserver from 'rc-resize-observer';
@@ -19,21 +13,26 @@ let delayTimer: any = null;
 
 export interface ContainerProp {
   className?: string;
+  disabled?: boolean
   prefixCls: string;
   popupNode?: React.ReactNode
-  children: ReactNode
+  children: ReactNode,
+  visible: boolean,
+  onToggleOpen: (open: boolean) => void;
 }
 
 const Container: React.FC<ContainerProp> = (props, ref) => {
   const {
     children,
     className,
+    disabled,
     prefixCls,
     popupNode,
+    visible,
+    onToggleOpen,
     ...rest
   } = props;
 
-  const [visible, setVisible] = useState(false);
   const [point, setPoint] = useState({left: 0, top: 0});
   const [popupWidth, setPopupWidth] = useState(0);
 
@@ -53,9 +52,9 @@ const Container: React.FC<ContainerProp> = (props, ref) => {
   })
 
 
-  useImperativeHandle(ref, () => ({
-    hidden: () => setVisible(false)
-  }));
+  // useImperativeHandle(ref, () => ({
+  //   hidden: () => setVisible(false)
+  // }));
 
 
   const clearOutsideHandler = () => {
@@ -107,7 +106,7 @@ const Container: React.FC<ContainerProp> = (props, ref) => {
   ) => {
     // clearTimer();
     popupAlign()
-    setVisible(popupVisible);
+    onToggleOpen(popupVisible);
   }
 
   // const delaySetPopupVisible = (popupVisible: boolean, delayS: number, ev?: MouseEvent) => {
@@ -125,8 +124,9 @@ const Container: React.FC<ContainerProp> = (props, ref) => {
 
   const handleClick = () => {
     // delaySetPopupVisible(true, defaultProps.focusDelay)
-
-    setPopupVisible(true)
+    if (!disabled) {
+      setPopupVisible(true)
+    }
   }
 
   const handleDocumentClick = (ev: any) => {

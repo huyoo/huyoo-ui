@@ -1,111 +1,189 @@
-/**
- * @DECS: 列表下拉选择
- * @AUTHOR: hy
- * @DATE:       2021-06-06
- * http://developer.rcsit.cn:1024/components/combo-list-cn/
- */
-import React, {useEffect, useMemo, useRef, useState} from "react";
-import {Input, List} from "antd";
+import React from "react";
 import Container from "./Container";
-import Option from "./Option";
+import {basePrefixCls} from "../utils/util";
+import OptionList from "./OptionList";
+import {MergedValue, OptionData, SizeType} from "./interface";
+import Trigger from "./Trigger";
+import SizeContext from "antd/lib/config-provider/SizeContext";
 
-export interface ListSelectProp<T> {
-  dataSource: Array<T>;
-  showItem?: {
-    name: string;
-    code?: string;
-    extra?: string | ((record: T, index: number) => React.ReactNode);
-  }
-  renderItem?: (record: T, index: number) => React.ReactNode;
-  value?: string | number;
-  defaultValue?: string | number;
-  onChange?: (value: string | number, record: T) => void;
-  style?: React.CSSProperties;
+const prefixCls = `${basePrefixCls}-list-select`;
+
+export interface ListSelectProp<OptionsType> {
+  /**
+   * @description 支持清除
+   * @default false
+   */
+  allowClear?: boolean;
+
+  /**
+   * @description 选择器类名
+   */
   className?: string;
-  rowKey?: string,
+
+  /**
+   * @description 数据化配置选项内容
+   */
+  options: Array<OptionsType>;
+
+  /**
+   * @description 指定默认选中的条目
+   */
+  defaultValue?: string | number;
+
+  /**
+   * @description 是否禁用
+   * @default false
+   */
+  disabled?: boolean;
+
+  /**
+   * @description 唯一键
+   * @default name
+   */
+  itemKey?: string;
+
+  /**
+   * @description 设置弹窗滚动高度
+   * @default 256
+   */
+  listHeight?: number;
+
+  /**
+   * @description 行高，用于列表虚拟化，非必要勿用
+   * @default 69
+   */
+  listItemHeight?: number;
+
+  /**
+   * @description 加载中
+   */
+  loading?: boolean;
+
+  /**
+   * @description 选中 option 的回调
+   */
+  onChange?: (value: string | number, record?: OptionsType) => void;
+
+  /**
+   * @description 选择框默认文本
+   */
+  placeholder?: string;
+
+  /**
+   * @description
+   * @default default
+   */
+  size?: 'small' | 'default' | 'large'
+
+  /**
+   * @description 样式
+   */
+  style?: React.CSSProperties;
+
+  /**
+   * @description 指定当前选中的条目
+   */
+  value?: string | number;
+
+  /**
+   * @description 是否开启虚拟化
+   * @default true
+   */
+  virtual?: boolean
 }
 
-function ListSelect<T = any>(props: ListSelectProp<T>) {
+export default function ListSelect<OptionsType extends OptionData>(props: ListSelectProp<OptionsType>) {
   const {
-    dataSource,
-    renderItem,
-    showItem,
+    options,
     className,
     style,
     onChange,
     value,
     defaultValue,
-    rowKey = 'id',
+    disabled,
+    loading,
+    allowClear,
+    placeholder,
+
+    itemKey = "name",
+    listHeight = 256,
+    listItemHeight = 69,
+    virtual = true,
+    size: customizedSize
   } = props;
+  const size = React.useContext(SizeContext);
+  const mergedSize = (customizedSize || size) as SizeType;
 
-  const [selected, setSelected] = useState<string | number | undefined>(value || defaultValue);
-  const isMount = useRef(false);
-  let containerRef = useRef<any>(null);
+  // ============================== OptionList ==============================
+  const [mergedValue, setMergedValue] = React.useState<MergedValue>(value || defaultValue);
 
-  useEffect(() => {
+  const valueSet = React.useMemo(() => new Set(mergedValue === undefined ? undefined : [mergedValue]), [mergedValue])
+
+  const isMount = React.useRef(false);
+
+  React.useEffect(() => {
     if (!isMount.current) {
       isMount.current = true
       return;
     }
 
     if (value !== undefined) {
-      setSelected(value);
+      setMergedValue(value);
     }
-  }, [value])
+  }, [value]);
 
-  const handleSelect = (newValue: any) => {
-    if (value !== undefined) {
-      onChange && onChange(newValue[rowKey], newValue)
-    } else {
-      setSelected(newValue[rowKey])
+  // ============================== OptionList ==============================
+  const [open, setOpen] = React.useState(false);
+
+
+  const handleSelect = (option?: OptionsType) => {
+    let newSelectedValue = undefined;
+
+    // TODO refactor this branch
+    if (option !== undefined) {
+      if (option.hasOwnProperty(itemKey)) {
+        newSelectedValue = option[itemKey];
+      }
     }
 
-    if (containerRef?.current?.hidden) {
-      containerRef.current.hidden()
-    }
+    onChange && onChange(newSelectedValue, option);
+    setMergedValue(newSelectedValue);
+    setOpen(false)
   }
 
-  const popupNode = useMemo(() => {
-    if (renderItem && renderItem instanceof Function) {
-      return dataSource.map(renderItem)
-    }
-
-    if (showItem) {
-      const {name, code, extra} = showItem || {};
-
-      return dataSource.map((record, index) => {
-        const optionProp: any = {
-          key: index,
-          name: (record as any)?.[name],
-          code: code ? (record as any)?.[code] : '',
-          record,
-          onClick: handleSelect
-        }
-
-        if (extra instanceof Function) {
-          optionProp.extra = extra(record, index);
-        } else if (extra) {
-          optionProp.extra = (record as any)?.[extra];
-        }
-
-        return (
-          <Option<T> {...optionProp}/>
-        )
-      })
-    }
-
-    return dataSource.map(() => null)
-  }, [dataSource]);
+  const newPopupNode = (
+    <OptionList<OptionsType>
+      height={listHeight}
+      itemHeight={listItemHeight}
+      itemKey={itemKey}
+      data={options as any}
+      prefixCls={prefixCls}
+      onSelect={handleSelect}
+      values={valueSet}
+      open={open}
+      virtual={virtual}
+    />
+  )
 
   return (
-    <Container prefixCls='antd-ext-list-select' popupNode={<List>{popupNode}</List>} ref={containerRef}>
-      <div className={className} style={style}>
-        <Input value={selected}/>
-      </div>
+    <Container
+      prefixCls={prefixCls}
+      popupNode={newPopupNode}
+      visible={open}
+      onToggleOpen={setOpen}
+    >
+      <Trigger
+        prefixCls={prefixCls}
+        disabled={disabled}
+        value={mergedValue}
+        className={className}
+        style={style}
+        size={mergedSize}
+        loading={loading}
+        allowClear={allowClear}
+        placeholder={placeholder}
+        onClean={() => handleSelect(undefined)}
+      />
     </Container>
   )
 }
-
-
-export const Item = List.Item;
-export default ListSelect;

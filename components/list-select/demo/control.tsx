@@ -2,20 +2,14 @@ import {ListSelect} from 'huyoo-ui';
 import React, {useState} from 'react'
 
 const list = [
-  {id: '京', value: '北京', level: '华北'},
-  {id: '冀', value: '河北', level: '华北'},
-  {id: '粤', value: '广东', level: '华南'},
-  {id: '川', value: '四川', level: '西南'}
+  {code: '京', name: '北京', extra: '华北'},
+  {code: '冀', name: '河北', extra: '华北'},
+  {code: '粤', name: '广东', extra: '华南'},
+  {code: '川', name: '四川', extra: '西南'}
 ];
 
-const itemConfig = {
-  name: 'value',
-  code: 'id',
-  extra: 'level'
-}
-
 const App = () => {
-  const [value, setValue] = useState('粤');
+  const [value, setValue] = useState('广东');
 
   const onChange = (value: string | number, record: any) => {
     console.log(value, record)
@@ -25,8 +19,7 @@ const App = () => {
   return (
     <ListSelect
       style={{width: 150}}
-      dataSource={list}
-      showItem={itemConfig}
+      options={list}
       value={value}
       onChange={onChange}
     />

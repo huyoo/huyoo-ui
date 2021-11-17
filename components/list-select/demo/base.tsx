@@ -1,26 +1,33 @@
-import {ListSelect} from 'huyoo-ui';
 import React from 'react'
+import {ListSelect} from 'huyoo-ui';
+import {SelectedValueType} from 'huyoo-ui/lib/list-select/interface';
 
 const list = [
-  {id: '京', value: '北京', level: '华北'},
-  {id: '冀', value: '河北', level: '华北'},
-  {id: '粤', value: '广东', level: '华南'},
-  {id: '川', value: '四川', level: '西南'}
+  {code: '京', name: '北京', extra: '华北'},
+  {code: '冀', name: '河北', extra: '华北'},
+  {code: '粤', name: '广东', extra: '华南'},
+  {code: '川', name: '四川', extra: '西南'}
 ];
 
-const itemConfig = {
-  name: 'value',
-  code: 'id',
-  extra: 'level'
-}
-
 const App = () => {
+  const handleSelect = (value?: SelectedValueType, record?: any) => {
+    console.log(value, record)
+  }
+
+  const props = {
+    style: {width: 150, margin: 8},
+    options: list,
+    onChange: handleSelect
+  }
+
   return (
-    <ListSelect
-      style={{width: 150}}
-      dataSource={list}
-      showItem={itemConfig}
-    />
+    <>
+      <ListSelect {...props}/>
+      <ListSelect {...props} disabled/>
+      <ListSelect {...props} loading/>
+      <ListSelect {...props} defaultValue='北京' allowClear/>
+    </>
+
   )
 }
 

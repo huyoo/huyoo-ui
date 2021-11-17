@@ -1,9 +1,4 @@
-/**
- * @DECS:
- * @AUTH: hy
- * @DATE: 2021-06-07
- * https://hub.fastgit.org/react-component/motion
- */
+// https://hub.fastgit.org/react-component/motion
 import React from "react";
 import CSSMotion, {CSSMotionProps} from 'rc-motion';
 import classNames from 'classnames';

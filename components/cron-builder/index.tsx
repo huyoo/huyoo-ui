@@ -1,8 +1,3 @@
-/**
- * @DECS: Cron 表达式构造器
- * @AUTH: hy
- * @DATE: 2021-06-06
- */
 import {Input, Popover} from "antd";
 import * as React from "react";
 import {useEffect, useRef, useState} from "react";

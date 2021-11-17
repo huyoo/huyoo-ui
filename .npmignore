@@ -33,4 +33,6 @@ yarn.lock
 npm.lock
 package-lock.json
 jest.config.js
+LICENSE
+README.md
 

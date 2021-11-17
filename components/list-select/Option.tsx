@@ -1,10 +1,6 @@
-/**
- * @DECS:
- * @AUTH: hy
- * @DATE: 2021-06-11
- */
 import React from "react";
 import {List} from 'antd'
+import {basePrefixCls} from "../utils/util";
 
 const {Item} = List;
 
@@ -20,7 +16,7 @@ function Option<T>(
   props: OptionProp<T>
 ) {
 
-  const prefixCls = 'antd-ext-list-select';
+  const prefixCls = `${basePrefixCls}-list-select`;
   const prefixClsItem = prefixCls + '-item';
 
   const {
