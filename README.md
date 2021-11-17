@@ -36,11 +36,6 @@ const App = () => (
 import 'huyoo-ui/dist/huyoo-ui.css'
 ```
 
-## 组件
-- 年份选择器
-- 列表选择器
-- cron表达式构建器
-
 ## 版本依赖
 ```
 react >= 16.9.0

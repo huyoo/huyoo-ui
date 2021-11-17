@@ -5,8 +5,17 @@ toc: menu
 
 # 更新日志
 
+## 0.3.0
+`2021-11-17`
+* ListSelect
+  - 🔥 重构组件，支持列表虚拟化。
+  - 🔥 新增 `size` `placeholder` `allowClear` `disabled` 等属性，详细信息请查看[相关文档](https://huyoo.github.io/huyoo-ui/components/list-select)。
+  - 🐞 修复下拉列表高度未限制问题。
+  - 🚧 移除 `renderItem` `showItem` `rowKey`。
+* 🔥 新增组件 `Spin`，先期提供 4 种加载动画。
+
 ## 0.2.2
-`待定`
+`2021-11-07`
 * YearPicker
   - 🔥 新增 `size` `placeholder`,`size`可以通过全局化配置`ConfigProvider`统一设置。
   - 💄 优化`disabled` `hover` `focus`等状态的样式。

@@ -1,5 +1,5 @@
 ---
-title: Spin 加载中(实验性)
+title: Spin 加载中
 nav:
   title: 组件 
   path: /components 
@@ -8,7 +8,7 @@ group:
   order: 30
 ---
 
-# Spin 加载中 <Badge>实验性</Badge>
+# Spin 加载中
 提供更多的加载动效。
 
 ## Roll

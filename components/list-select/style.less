@@ -132,6 +132,7 @@
 
 .@{list-select}-dropdown {
   position: relative;
+  padding-bottom: 2px;
   background-color: white;
   border-radius: @border-radius-base;
   box-shadow: 0 0 8px rgba(0, 0, 0, .15);
@@ -228,5 +229,9 @@
 
   &:not(&-disabled):not(&-selected):hover {
     background-color: #f0f0f0;
+  }
+
+  &:last-of-type{
+    border-bottom: none;
   }
 }

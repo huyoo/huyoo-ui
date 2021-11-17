@@ -32,4 +32,6 @@ yarn-error.log*
 yarn.lock
 npm.lock
 jest.config.js
+LICENSE
+README.md
 

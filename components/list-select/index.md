@@ -22,6 +22,7 @@ group:
 <code src="./demo/control.tsx" />
 
 ## 虚拟列表
+默认开启虚拟化，渲染上万数据也能有很好的体验。  
 <code src="./demo/virtualList.tsx" />
 
 <API src="./index.tsx"></API>
