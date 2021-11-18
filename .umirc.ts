@@ -9,6 +9,7 @@ export default defineConfig({
   // chainWebpack(memo) {
   //   memo.plugins.delete('copy');
   // },
+  dynamicImport:{},
   mode: 'site',
   hash: true,
   outputPath: 'docs',
